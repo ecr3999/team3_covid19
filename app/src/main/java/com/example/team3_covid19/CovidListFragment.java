@@ -31,7 +31,7 @@ public class CovidListFragment extends Fragment {
      * @return A new instance of fragment CovidListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CovidListFragment newInstance(String param1, String param2) {
+    public static CovidListFragment newInstance() {
         CovidListFragment fragment = new CovidListFragment();
         return fragment;
     }
