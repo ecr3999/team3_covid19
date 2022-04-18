@@ -76,7 +76,11 @@ public class Data {
     @ColumnInfo(name = "critical_per_one_million")
     public String criticalPerOneMillion;
 
-    public Data(int id, String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String critical, String casesPerOneMillion, String deathsPerOneMillion, String tests, String testsPerOneMillion, String population, String continent, String oneCasePerPeople, String oneDeathPerPeople, String oneTestPerPeople, String activePerOneMillion, String recoveredPerOneMillion, String criticalPerOneMillion) {
+    public Data(String country, String cases) {
+        this.country = country;
+        this.cases = cases;
+    }
+/*public Data(int id, String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String critical, String casesPerOneMillion, String deathsPerOneMillion, String tests, String testsPerOneMillion, String population, String continent, String oneCasePerPeople, String oneDeathPerPeople, String oneTestPerPeople, String activePerOneMillion, String recoveredPerOneMillion, String criticalPerOneMillion) {
         this.id = id;
         this.updated = updated;
         this.country = country;
@@ -100,5 +104,6 @@ public class Data {
         this.activePerOneMillion = activePerOneMillion;
         this.recoveredPerOneMillion = recoveredPerOneMillion;
         this.criticalPerOneMillion = criticalPerOneMillion;
-    }
+    }*/
+
 }
