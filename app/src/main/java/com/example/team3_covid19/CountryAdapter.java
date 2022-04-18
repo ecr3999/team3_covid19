@@ -16,7 +16,6 @@ import java.util.List;
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder>  {
     public CountryAdapter(List<CovidData> covidData) {
         this.covidData = covidData;
-        Log.e("TAG",covidData.get(0).getCountry());
     }
 
     private List<CovidData> covidData;
