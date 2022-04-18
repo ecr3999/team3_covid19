@@ -1,5 +1,8 @@
 package com.example.team3_covid19;
 
+import android.text.Layout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,16 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class CountryAdapter2 extends RecyclerView.Adapter<CountryAdapter.ViewHolder>  {
-    public CountryAdapter2(List<CovidData> covidData) {
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder>  {
+    public CountryAdapter(List<CovidData> covidData) {
         this.covidData = covidData;
+        Log.e("TAG",covidData.get(0).getCountry());
     }
 
     private List<CovidData> covidData;
     @NonNull
     @Override
     public CountryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.country_item,parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
