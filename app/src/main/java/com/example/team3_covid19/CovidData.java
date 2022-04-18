@@ -2,7 +2,7 @@ package com.example.team3_covid19;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CovidDataItem{
+public class CovidData {
 
 	@SerializedName("continent")
 	private String continent;

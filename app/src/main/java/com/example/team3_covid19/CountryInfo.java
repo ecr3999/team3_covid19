@@ -14,10 +14,10 @@ public class CountryInfo{
 	private String iso2;
 
 	@SerializedName("lat")
-	private int lat;
+	private float lat;
 
 	@SerializedName("long")
-	private int jsonMemberLong;
+	private float jsonMemberLong;
 
 	@SerializedName("iso3")
 	private String iso3;
@@ -34,11 +34,11 @@ public class CountryInfo{
 		return iso2;
 	}
 
-	public int getLat(){
+	public float getLat(){
 		return lat;
 	}
 
-	public int getJsonMemberLong(){
+	public float getJsonMemberLong(){
 		return jsonMemberLong;
 	}
 
