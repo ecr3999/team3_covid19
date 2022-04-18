@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder>  {
-    public CountryAdapter(List<CovidData> covidData) {
+public class CountryAdapter2 extends RecyclerView.Adapter<CountryAdapter.ViewHolder>  {
+    public CountryAdapter2(List<CovidData> covidData) {
         this.covidData = covidData;
     }
 
