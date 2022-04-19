@@ -5,47 +5,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputCountry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/room_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputCase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputCountry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/room_case"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--<EditText
         android:id="@+id/txtCountryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Country"
-        app:layout_constraintBottom_toTopOf="@+id/txtCase"
-        app:layout_constraintStart_toStartOf="@+id/txtCase" />
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/txtCase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="139dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="211dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Case"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/btnInsert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="30dp"
         android:text="Insert"
-        app:layout_constraintStart_toStartOf="@+id/txtCase"
-        app:layout_constraintTop_toBottomOf="@+id/txtCase" />
+        app:layout_constraintBottom_toTopOf="@+id/btnGetData"
+        app:layout_constraintStart_toStartOf="@+id/btnGetData" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginBottom="28dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetData"
+        app:layout_constraintStart_toStartOf="@+id/btnGetData" />
 
     <Button
         android:id="@+id/btnGetData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="115dp"
         android:text="Get Data"
-        app:layout_constraintStart_toStartOf="@+id/btnInsert"
-        app:layout_constraintTop_toBottomOf="@+id/btnInsert" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputCase" />
+
+    <!--<TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="35dp"
+        android:text="Country"
+        app:layout_constraintStart_toStartOf="@+id/txtCountryName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="34dp"
+        android:text="Case"
+        app:layout_constraintBottom_toTopOf="@+id/txtCase"
+        app:layout_constraintStart_toStartOf="@+id/txtCase" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

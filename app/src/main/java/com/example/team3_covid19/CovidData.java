@@ -1,77 +1,82 @@
 package com.example.team3_covid19;
 
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 public class CovidData {
 
+	@PrimaryKey(autoGenerate = true)
+	public int id;
+
 	@SerializedName("continent")
-	private String continent;
+	public String continent;
 
 	@SerializedName("country")
-	private String country;
+	public String country;
 
 	@SerializedName("recoveredPerOneMillion")
-	private double recoveredPerOneMillion;
+	public double recoveredPerOneMillion;
 
 	@SerializedName("cases")
-	private int cases;
+	public String cases;
 
 	@SerializedName("critical")
-	private int critical;
+	public int critical;
 
 	@SerializedName("oneCasePerPeople")
-	private int oneCasePerPeople;
+	public int oneCasePerPeople;
 
 	@SerializedName("active")
-	private int active;
+	public int active;
 
 	@SerializedName("testsPerOneMillion")
-	private int testsPerOneMillion;
+	public int testsPerOneMillion;
 
 	@SerializedName("population")
-	private int population;
+	public int population;
 
 	@SerializedName("oneDeathPerPeople")
-	private int oneDeathPerPeople;
+	public int oneDeathPerPeople;
 
 	@SerializedName("recovered")
-	private int recovered;
+	public int recovered;
 
 	@SerializedName("oneTestPerPeople")
-	private int oneTestPerPeople;
+	public int oneTestPerPeople;
 
 	@SerializedName("tests")
-	private int tests;
+	public int tests;
 
 	@SerializedName("criticalPerOneMillion")
-	private double criticalPerOneMillion;
+	public double criticalPerOneMillion;
 
 	@SerializedName("deathsPerOneMillion")
-	private int deathsPerOneMillion;
+	public int deathsPerOneMillion;
 
 	@SerializedName("todayRecovered")
-	private int todayRecovered;
+	public int todayRecovered;
 
 	@SerializedName("casesPerOneMillion")
-	private int casesPerOneMillion;
+	public int casesPerOneMillion;
 
 	@SerializedName("countryInfo")
-	private CountryInfo countryInfo;
+	public CountryInfo countryInfo;
 
 	@SerializedName("updated")
-	private long updated;
+	public long updated;
 
 	@SerializedName("deaths")
-	private int deaths;
+	public int deaths;
 
 	@SerializedName("activePerOneMillion")
-	private double activePerOneMillion;
+	public double activePerOneMillion;
 
 	@SerializedName("todayCases")
-	private int todayCases;
+	public int todayCases;
 
 	@SerializedName("todayDeaths")
-	private int todayDeaths;
+	public int todayDeaths;
 
 	public String getContinent(){
 		return continent;
@@ -85,7 +90,7 @@ public class CovidData {
 		return recoveredPerOneMillion;
 	}
 
-	public int getCases(){
+	public String getCases(){
 		return cases;
 	}
 
@@ -163,5 +168,106 @@ public class CovidData {
 
 	public int getTodayDeaths(){
 		return todayDeaths;
+	}
+
+	public void setContinent(String continent) {
+		this.continent = continent;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public void setRecoveredPerOneMillion(double recoveredPerOneMillion) {
+		this.recoveredPerOneMillion = recoveredPerOneMillion;
+	}
+
+	public void setCases(String cases) {
+		this.cases = cases;
+	}
+
+	public void setCritical(int critical) {
+		this.critical = critical;
+	}
+
+	public void setOneCasePerPeople(int oneCasePerPeople) {
+		this.oneCasePerPeople = oneCasePerPeople;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	public void setTestsPerOneMillion(int testsPerOneMillion) {
+		this.testsPerOneMillion = testsPerOneMillion;
+	}
+
+	public void setPopulation(int population) {
+		this.population = population;
+	}
+
+	public void setOneDeathPerPeople(int oneDeathPerPeople) {
+		this.oneDeathPerPeople = oneDeathPerPeople;
+	}
+
+	public void setRecovered(int recovered) {
+		this.recovered = recovered;
+	}
+
+	public void setOneTestPerPeople(int oneTestPerPeople) {
+		this.oneTestPerPeople = oneTestPerPeople;
+	}
+
+	public void setTests(int tests) {
+		this.tests = tests;
+	}
+
+	public void setCriticalPerOneMillion(double criticalPerOneMillion) {
+		this.criticalPerOneMillion = criticalPerOneMillion;
+	}
+
+	public void setDeathsPerOneMillion(int deathsPerOneMillion) {
+		this.deathsPerOneMillion = deathsPerOneMillion;
+	}
+
+	public void setTodayRecovered(int todayRecovered) {
+		this.todayRecovered = todayRecovered;
+	}
+
+	public void setCasesPerOneMillion(int casesPerOneMillion) {
+		this.casesPerOneMillion = casesPerOneMillion;
+	}
+
+	public void setCountryInfo(CountryInfo countryInfo) {
+		this.countryInfo = countryInfo;
+	}
+
+	public void setUpdated(long updated) {
+		this.updated = updated;
+	}
+
+	public void setDeaths(int deaths) {
+		this.deaths = deaths;
+	}
+
+	public void setActivePerOneMillion(double activePerOneMillion) {
+		this.activePerOneMillion = activePerOneMillion;
+	}
+
+	public void setTodayCases(int todayCases) {
+		this.todayCases = todayCases;
+	}
+
+	public void setTodayDeaths(int todayDeaths) {
+		this.todayDeaths = todayDeaths;
+	}
+
+	public CovidData(String country, String cases) {
+		this.country = country;
+		this.cases = cases;
+	}
+
+	public CovidData() {
+
 	}
 }

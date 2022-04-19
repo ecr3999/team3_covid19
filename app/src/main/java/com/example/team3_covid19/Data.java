@@ -15,6 +15,18 @@ public class Data {
 
     @ColumnInfo(name = "country")
     public String country;
+    @ColumnInfo(name = "countryInfoFlag")
+    public String countryInfoFlag;
+    @ColumnInfo(name = "countryInfoId")
+    public String countryInfoId;
+    @ColumnInfo(name = "countryInfoIso2")
+    public String countryInfoIso2;
+    @ColumnInfo(name = "countryInfoLat")
+    public String countryInfoLat;
+    @ColumnInfo(name = "countryInfoLong")
+    public String countryInfoLong;
+    @ColumnInfo(name = "countryInfoIso3")
+    public String countryInfoIso3;
 
     @ColumnInfo(name = "cases")
     public String cases;
@@ -80,6 +92,10 @@ public class Data {
         this.country = country;
         this.cases = cases;
     }
+
+    public Data() {
+
+    }
 /*public Data(int id, String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String critical, String casesPerOneMillion, String deathsPerOneMillion, String tests, String testsPerOneMillion, String population, String continent, String oneCasePerPeople, String oneDeathPerPeople, String oneTestPerPeople, String activePerOneMillion, String recoveredPerOneMillion, String criticalPerOneMillion) {
         this.id = id;
         this.updated = updated;
@@ -106,4 +122,12 @@ public class Data {
         this.criticalPerOneMillion = criticalPerOneMillion;
     }*/
 
+    @Override
+    public String toString() {
+        return "Data{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", cases='" + cases + '\'' +
+                '}';
+    }
 }

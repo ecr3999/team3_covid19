@@ -10,6 +10,7 @@ import java.util.List;
 @Dao
 public interface DataDao {
     @Query("SELECT * FROM data")
+    //LiveData<List<Data>> getAll();
     List<Data> getAll();
 
     @Query("SELECT * FROM data WHERE id IN (:ids)")
@@ -20,4 +21,7 @@ public interface DataDao {
 
     @Query("DELETE FROM data")
     void deleteAll();
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(Data data);
 }
