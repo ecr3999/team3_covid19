@@ -1,7 +1,5 @@
 package com.example.team3_covid19;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,23 +8,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,8 +76,8 @@ public class CovidListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        RetrofitInstance retrofitInstance = new RetrofitInstance();
-        retrofitInstance.getAPI().getCovidData().enqueue(new Callback<List<CovidData>>()
+        RetrofitCovidData retrofitCovidData = new RetrofitCovidData();
+        retrofitCovidData.getAPI().getCovidData().enqueue(new Callback<List<CovidData>>()
         {
             @Override
             public void onResponse(Call<List<CovidData>> call, Response<List<CovidData>> response) {
@@ -107,16 +97,16 @@ public class CovidListFragment extends Fragment {
             }
         });
     }
-    @Override
+/*    @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-       /* SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setIconifiedByDefault(true);
         searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                if (updateList(s))
+                if (quesrySearch(s))
                     return true;
                 else {
                     String message = "Data tidak ditemukan";
@@ -132,7 +122,7 @@ public class CovidListFragment extends Fragment {
                 }
             }
 
-            private boolean updateList(String s) {
+            private boolean quesrySearch(String s) {
                     ArrayList<CovidData> alFoundPresidents = null;
                     alFoundPresidents = searchUser(query);
 
@@ -155,12 +145,12 @@ public class CovidListFragment extends Fragment {
                 }
                 return false;
             }
-        });*/
+        });
 
         super.onCreateOptionsMenu(menu, inflater);
         Log.e("Hello","test");
         inflater.inflate(R.menu.menu,menu);
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

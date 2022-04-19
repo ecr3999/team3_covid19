@@ -3,6 +3,7 @@ package com.example.team3_covid19;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,10 +11,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.internal.http2.Header;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class LoginActivity extends AppCompatActivity {
     TextView tvUsername, tvPassword;
     Button btnLogin;
+    LoginData loginData = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,15 +45,47 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this,"Username dan Password tidak boleh kosong!!",Toast.LENGTH_SHORT).show();
             return;
         }
-        if(username.equals("user")&&password.equals("user")){
-            startStoreSession();
-            Intent intent= new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }else{
-            Toast.makeText(LoginActivity.this,"Username dan Password tidak match!!",Toast.LENGTH_SHORT).show();
-            return;
-        }
+
+        getLoginData(username, password);
+
+
+    }
+
+    private void getLoginData(String username, String password) {
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("username", username)
+                .addFormDataPart("password", password)
+                .build();
+        RetrofitLoginData retrofitLoginData = new RetrofitLoginData();
+        retrofitLoginData.getAPI().getLoginData(requestBody).enqueue(new Callback<LoginData>() {
+            @Override
+            public void onResponse(Call<LoginData> call, Response<LoginData> response) {
+                loginData = response.body();
+                if(loginData == null)
+                {
+                    Toast.makeText(LoginActivity.this,"Logon Server is down",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                System.out.println(response.body().toString());
+
+                if(loginData.getStatus()){
+                    startStoreSession();
+                    Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(LoginActivity.this,"Username atau Password salah!!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginData> call, Throwable t) {
+                Log.e("Failure:", t.getMessage());
+            }
+        });
     }
 
     private void startStoreSession(){
