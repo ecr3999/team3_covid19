@@ -5,9 +5,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +21,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.team3_covid19.room.CovidViewModel;
+import com.example.team3_covid19.room.Data;
+
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,8 +37,11 @@ import retrofit2.Response;
  * Use the {@link CovidListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CovidListFragment extends Fragment {
+public class CovidListFragment extends Fragment implements CountryAdapter.OnItemClick{
     private RecyclerView recyclerView;
+    List<CovidData> covidData;
+    private CovidViewModel covidViewModel;
+
     private final UserClickableCallback userClickableCallback = new UserClickableCallback() {
         @Override
         public void onClick(View view, CovidData covidData) {
@@ -65,7 +78,8 @@ public class CovidListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //Need to be included if created in fragment
-
+        //covidViewModel = new ViewModelProvider(requireActivity()).get(CovidViewModel.class);
+        //covidViewModel = new ViewModelProvider(requireActivity()).get(CovidViewModel.class);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,10 +95,9 @@ public class CovidListFragment extends Fragment {
         {
             @Override
             public void onResponse(Call<List<CovidData>> call, Response<List<CovidData>> response) {
-
-                List<CovidData> covidData = response.body();
+                covidData = response.body();
                 CountryAdapter countryAdapter  = new CountryAdapter(covidData);
-
+                countryAdapter.setOnClickListener(CovidListFragment.this);
                 recyclerView = view.findViewById(R.id.recyclerview);
                 recyclerView.setAdapter(countryAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -92,10 +105,11 @@ public class CovidListFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<CovidData>> call, Throwable t) {
-                Toast.makeText(getActivity(), "An error has occured", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "An error has occured", Toast.LENGTH_LONG).show();
                 Log.e("Failure:", t.getMessage());
             }
         });
+        //startThread();
     }
 /*    @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -171,4 +185,9 @@ public class CovidListFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    public void onItemClick(int position, CovidData data) {
+       // Toast.makeText(this, "Position : " + position + ", Country : " + data.country + ", Case : " + data.cases, Toast.LENGTH_SHORT).show();
+        Log.d("CLICKED", "Position : " + position + ", Country : " + data.country + ", Case : " + data.cases);
+    }
 }

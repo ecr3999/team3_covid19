@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.room;
 
 import android.content.Context;
 
@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
 public abstract class CovidDatabase extends RoomDatabase {
     public abstract DataDao dataDao();
     private static volatile CovidDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 1;
-    static final ExecutorService databaseWriteExecutor =
+    private static final int NUMBER_OF_THREADS = 2;
+    public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static CovidDatabase getDatabase(final Context context) {

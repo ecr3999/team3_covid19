@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.room;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -32,19 +32,19 @@ public class Data {
     public String cases;
 
     @ColumnInfo(name = "today_cases")
-    public String todayCases;
+    public int todayCases;
 
     @ColumnInfo(name = "deaths")
-    public String deaths;
+    public int deaths;
 
     @ColumnInfo(name = "today_deaths")
-    public String todayDeaths;
+    public int todayDeaths;
 
     @ColumnInfo(name = "recovered")
-    public String recovered;
+    public int recovered;
 
     @ColumnInfo(name = "today_recovered")
-    public String todayRecovered;
+    public int todayRecovered;
 
     @ColumnInfo(name = "active")
     public String active;
@@ -126,8 +126,34 @@ public class Data {
     public String toString() {
         return "Data{" +
                 "id=" + id +
+                ", updated='" + updated + '\'' +
                 ", country='" + country + '\'' +
+                ", countryInfoFlag='" + countryInfoFlag + '\'' +
+                ", countryInfoId='" + countryInfoId + '\'' +
+                ", countryInfoIso2='" + countryInfoIso2 + '\'' +
+                ", countryInfoLat='" + countryInfoLat + '\'' +
+                ", countryInfoLong='" + countryInfoLong + '\'' +
+                ", countryInfoIso3='" + countryInfoIso3 + '\'' +
                 ", cases='" + cases + '\'' +
+                ", todayCases=" + todayCases +
+                ", deaths=" + deaths +
+                ", todayDeaths=" + todayDeaths +
+                ", recovered=" + recovered +
+                ", todayRecovered=" + todayRecovered +
+                ", active='" + active + '\'' +
+                ", critical='" + critical + '\'' +
+                ", casesPerOneMillion='" + casesPerOneMillion + '\'' +
+                ", deathsPerOneMillion='" + deathsPerOneMillion + '\'' +
+                ", tests='" + tests + '\'' +
+                ", testsPerOneMillion='" + testsPerOneMillion + '\'' +
+                ", population='" + population + '\'' +
+                ", continent='" + continent + '\'' +
+                ", oneCasePerPeople='" + oneCasePerPeople + '\'' +
+                ", oneDeathPerPeople='" + oneDeathPerPeople + '\'' +
+                ", oneTestPerPeople='" + oneTestPerPeople + '\'' +
+                ", activePerOneMillion='" + activePerOneMillion + '\'' +
+                ", recoveredPerOneMillion='" + recoveredPerOneMillion + '\'' +
+                ", criticalPerOneMillion='" + criticalPerOneMillion + '\'' +
                 '}';
     }
 }
