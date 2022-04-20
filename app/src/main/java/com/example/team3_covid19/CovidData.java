@@ -1,12 +1,9 @@
 package com.example.team3_covid19;
 
-import androidx.room.PrimaryKey;
-
 import com.google.gson.annotations.SerializedName;
 
 public class CovidData {
 
-	@PrimaryKey(autoGenerate = true)
 	public int id;
 
 	@SerializedName("continent")

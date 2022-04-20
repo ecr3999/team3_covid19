@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 
+import com.example.team3_covid19.room.CovidDatabase;
+import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.room.DataDao;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -30,7 +33,7 @@ public class TestDbActivity extends AppCompatActivity {
     private TextInputLayout txtCountry,txtCase;
     private static final int NUMBER_OF_THREADS = 1;
     //private LiveData<List<Data>> allData;
-    private List<Data> allData;
+    private LiveData<List<Data>> allData;
     private Executor poolWorker = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private Executor mainThread = new Executor() {
         private Handler handler = new Handler(Looper.getMainLooper());
@@ -91,8 +94,8 @@ public class TestDbActivity extends AppCompatActivity {
                     public void run() {
                         DataDao dataDao = database.dataDao();
                         allData = dataDao.getAll();
-                        Log.d("JmlDATA", "Size Data:" + allData.size());
-                        Log.d("JmlDATA", "Data:" + allData.toString());
+                        Log.d("JmlDATA", "Size Data:" + allData.getValue().size());
+//                        Log.d("JmlDATA", "Data:" + allData.toString());
                     }
                 });
                 //List<Data> users = dataDao.getAll();

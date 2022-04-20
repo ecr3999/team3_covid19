@@ -5,14 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,12 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.team3_covid19.room.CovidDatabase;
 import com.example.team3_covid19.room.CovidViewModel;
 import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.room.DataDao;
 
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,19 +36,9 @@ import retrofit2.Response;
  */
 public class CovidListFragment extends Fragment implements CountryAdapter.OnItemClick{
     private RecyclerView recyclerView;
-    List<CovidData> covidData;
+    List<Data> covidData;
     private CovidViewModel covidViewModel;
 
-    private final UserClickableCallback userClickableCallback = new UserClickableCallback() {
-        @Override
-        public void onClick(View view, CovidData covidData) {
-            Toast.makeText(view.getContext(),"Hello" + covidData.getCountry(), Toast.LENGTH_SHORT).show();
-
-
-//            DialogFragment newFragment = DeleteUserDialogFragment.newInstance(user);
-//            newFragment.show(getChildFragmentManager(), "DeleteUserDialogFragment");
-        }
-    };
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,8 +65,7 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //Need to be included if created in fragment
-        //covidViewModel = new ViewModelProvider(requireActivity()).get(CovidViewModel.class);
-        //covidViewModel = new ViewModelProvider(requireActivity()).get(CovidViewModel.class);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,104 +76,21 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        RetrofitCovidData retrofitCovidData = new RetrofitCovidData();
-        retrofitCovidData.getAPI().getCovidData().enqueue(new Callback<List<CovidData>>()
-        {
-            @Override
-            public void onResponse(Call<List<CovidData>> call, Response<List<CovidData>> response) {
-                covidData = response.body();
-                CountryAdapter countryAdapter  = new CountryAdapter(covidData);
+//        DataDao dataDao = CovidDatabase.getDatabase(getActivity()).dataDao();
+        CovidViewModel covidViewModel;
+        covidViewModel = new ViewModelProvider(getActivity()).get(CovidViewModel.class);
+        covidData = covidViewModel.getAllDatas().getValue();
+        CountryAdapter countryAdapter  = new CountryAdapter(covidData);
                 countryAdapter.setOnClickListener(CovidListFragment.this);
                 recyclerView = view.findViewById(R.id.recyclerview);
                 recyclerView.setAdapter(countryAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            }
 
-            @Override
-            public void onFailure(Call<List<CovidData>> call, Throwable t) {
-                //Toast.makeText(getActivity(), "An error has occured", Toast.LENGTH_LONG).show();
-                Log.e("Failure:", t.getMessage());
-            }
-        });
         //startThread();
     }
-/*    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setIconifiedByDefault(true);
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                if (quesrySearch(s))
-                    return true;
-                else {
-                    String message = "Data tidak ditemukan";
-                    Snackbar snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG);
-                    snackbar.setAction("OK", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            snackbar.dismiss();
-                        }
-                    });
-                    snackbar.show();
-                    return false;
-                }
-            }
-
-            private boolean quesrySearch(String s) {
-                    ArrayList<CovidData> alFoundPresidents = null;
-                    alFoundPresidents = searchUser(query);
-
-                    if (alFoundPresidents.size() != 0) {
-                        alPresidents.clear();
-                        alPresidents.addAll(alFoundPresidents);
-                        itemAdapter.notifyDataSetChanged();
-                        return true;
-                    } else
-                        return false;
-                }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-
-                if (TextUtils.isEmpty(s)) {
-                    //reset data
-                    resetData();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        super.onCreateOptionsMenu(menu, inflater);
-        Log.e("Hello","test");
-        inflater.inflate(R.menu.menu,menu);
-    }*/
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case  R.id.favorites:
-                Toast.makeText(getActivity(), "insert favorites here", Toast.LENGTH_SHORT).show();
-
-                return true;
-            case R.id.search:
-                Toast.makeText(getActivity(),"insert search here",Toast.LENGTH_SHORT).show();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public void onItemClick(int position, CovidData data) {
-       // Toast.makeText(this, "Position : " + position + ", Country : " + data.country + ", Case : " + data.cases, Toast.LENGTH_SHORT).show();
-        Log.d("CLICKED", "Position : " + position + ", Country : " + data.country + ", Case : " + data.cases);
+    public void onItemClick(int position, Data data) {
+        Log.e("TAG", data.country);
     }
 }
