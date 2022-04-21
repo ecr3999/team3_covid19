@@ -13,16 +13,17 @@ import java.util.List;
 public class FavRepository {
 
     private DataDao dataDao;
+    private Data data;
     private LiveData<List<Data>> allDatas;
     //private List<Data> allDatas;
 
-    public FavRepository(Application application){
+    public FavRepository(Application application) {
         FavDatabase database = FavDatabase.getDatabase(application);
         dataDao = database.dataDao();
         allDatas = dataDao.getAll();
     }
 
-    LiveData<List<Data>> getAllDatas(){
+    LiveData<List<Data>> getAllDatas() {
         return allDatas;
     }
 
@@ -39,8 +40,20 @@ public class FavRepository {
         });
     }*/
 
+    boolean countryIsExist(String country) {
+        boolean flag;
+        FavDatabase.databaseWriteExecutor.execute(() -> {
+            data = dataDao.getData(country);
+        });
+        if (data != null)
+            return true;
+        else
+            return false;
+
+    }
+
     void insert(List<Data> data) {
-        CovidDatabase.databaseWriteExecutor.execute(() -> {
+        FavDatabase.databaseWriteExecutor.execute(() -> {
             dataDao.insertAll(data);
         });
     }
@@ -55,8 +68,14 @@ public class FavRepository {
     }*/
 
 
-    void delete() {
-        CovidDatabase.databaseWriteExecutor.execute(() -> {
+    void delete(String country) {
+        FavDatabase.databaseWriteExecutor.execute(() -> {
+            dataDao.delete(country);
+        });
+    }
+
+    void deleteAll() {
+        FavDatabase.databaseWriteExecutor.execute(() -> {
             dataDao.deleteAll();
         });
     }

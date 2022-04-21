@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_fav.xml" value="0.1405" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_logout.xml" value="0.2765" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_no_fav.xml" value="0.1405" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_not_fav.xml" value="0.1405" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_login.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_test_db.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/bookmark_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/country_item.xml" value="0.25" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/favorite_item.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_bookmark.xml" value="0.2703125" />

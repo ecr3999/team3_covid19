@@ -42,7 +42,4 @@ public class CovidViewModel extends AndroidViewModel {
         userRepository.update(user);
     }*/
 
-    public void delete(){
-        covidRepository.delete();
-    }
 }

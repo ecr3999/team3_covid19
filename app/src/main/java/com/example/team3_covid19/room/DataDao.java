@@ -28,6 +28,12 @@ public interface DataDao {
     @Query("DELETE FROM data")
     void deleteAll();
 
+    @Query("SELECT * FROM data where country = :country")
+    Data getData(String country);
+
+    @Query("DELETE FROM data where country = :country")
+    void delete(String country);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Data data);
 }

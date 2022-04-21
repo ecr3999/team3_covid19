@@ -91,7 +91,7 @@
         android:minHeight="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:onClick="btnFav"
+        android:onClick="markFav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_not_fav" />

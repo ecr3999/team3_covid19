@@ -25,6 +25,10 @@ public class FavViewModel extends AndroidViewModel {
         return allDatas;
     }
 
+    public boolean countryIsExist(String country){
+        return favRepository.countryIsExist(country);
+    }
+
     public void insert(List<Data> data){
         favRepository.insert(data);
     }
@@ -32,8 +36,11 @@ public class FavViewModel extends AndroidViewModel {
         userRepository.update(user);
     }*/
 
-    public void delete(){
-        favRepository.delete();
+    public void deleteAll(){
+        favRepository.deleteAll();
+    }
+    public void delete(String country){
+        favRepository.delete(country);
     }
 }
 
