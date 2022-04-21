@@ -22,8 +22,8 @@ public interface DataDao {
     @Query("SELECT * FROM data WHERE id IN (:ids)")
     List<Data> loadAllByIds(int[] ids);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertAll(Data...datas);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Data> datas);
 
     @Query("DELETE FROM data")
     void deleteAll();
