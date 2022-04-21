@@ -3,13 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_fav.xml" value="0.1405" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_no_fav.xml" value="0.1405" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_not_fav.xml" value="0.1405" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_login.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_test_db.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/country_item.xml" value="0.25" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/favorite_item.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_bookmark.xml" value="0.2703125" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_covid_list.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_list_country.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_menu.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_profile_data.xml" value="0.25" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/recyclerview_item.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/menu/menu.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/menu/menu_app.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1975" />

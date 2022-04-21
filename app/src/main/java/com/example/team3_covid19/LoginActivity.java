@@ -1,6 +1,8 @@
 package com.example.team3_covid19;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +22,8 @@ import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
+    public static final String LOGIN_DATA = "com.example.team3_covid19.LoginActivity.LOGIN_DATA";
+
     TextView tvUsername, tvPassword;
     Button btnLogin;
     LoginData loginData = null;
@@ -46,12 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        getLoginData(username, password);
-
-
-    }
-
-    private void getLoginData(String username, String password) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("username", username)
@@ -71,7 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println(response.body().toString());
 
                 if(loginData.getStatus()){
+
                     startStoreSession();
+                    storeUserData(LoginActivity.this, response.body().getData());
                     Intent intent= new Intent(LoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -91,4 +91,15 @@ public class LoginActivity extends AppCompatActivity {
     private void startStoreSession(){
         SessionManagement.getInstance().startUserSession(LoginActivity.this, 15);
     }
+
+    public void storeUserData(Context context, UserData userData){
+        SharedPreferences sharedPref = context.getSharedPreferences(LOGIN_DATA, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =  sharedPref.edit();
+        editor.putString("username", userData.getUsername());
+        editor.putString("full_name", userData.getFullName());
+        editor.putString("avatar", userData.getAvatar());
+        editor.putString("email", userData.getEmail());
+        editor.commit();
+    }
 }
+

@@ -2,8 +2,6 @@ package com.example.team3_covid19;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -12,15 +10,14 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.example.team3_covid19.room.Data;
 
 public class CovidListAdapter extends ListAdapter<Data, CovidViewHolder> {
-    private OnItemClick click;
+    private OnItemClick itemClick;
 
     public interface OnItemClick {
         void onItemClick(int position, Data data);
-        //void onItemClick(int position, CovidData data);
     }
 
     public void setOnClickListener(OnItemClick onClick) {
-        click = onClick;
+        itemClick = onClick;
     }
 
     public CovidListAdapter(@NonNull DiffUtil.ItemCallback<Data> diffCallback) {
@@ -35,11 +32,12 @@ public class CovidListAdapter extends ListAdapter<Data, CovidViewHolder> {
     @Override
     public void onBindViewHolder(CovidViewHolder holder, int position) {
         Data current = getItem(position);
-        holder.bind(current.country);
+        System.out.println(current.countryInfoFlag);
+        holder.bind(current);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.onItemClick(position, current);
+                itemClick.onItemClick(position, current);
             }
         });
         /*TextView tvCountryName;

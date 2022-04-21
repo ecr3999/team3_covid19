@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.team3_covid19.Bookmark.FavViewModel;
 import com.example.team3_covid19.room.CovidDatabase;
 //import com.example.team3_covid19.room.CovidViewModel;
 import com.example.team3_covid19.room.CovidViewModel;
@@ -58,6 +59,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
+    private FavViewModel mFavViewModel;
     private static final String TAG_ID = "TAG_ID";
     private int id = -1;
     //LiveData<List<Data>> covidData;
@@ -89,10 +91,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
      */
     // TODO: Rename and change types and number of parameters
     public static CovidListFragment newInstance() {
-        /*Bundle args = new Bundle();
-        args.putInt(TAG_ID,data.id);
-        CovidListFragment fragment = new CovidListFragment();
-        fragment.setArguments(args);*/
         CovidListFragment fragment = new CovidListFragment();
         return fragment;
     }
@@ -140,7 +138,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     @Override
     /*public void onItemClick(int position, Data data) {*/
     public void onItemClick(int position, Data data) {
-        Log.e("TAGFRG", data.country+data.countryInfoId);
+        Log.e("TAGFRG", data.country + data.countryInfoId);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
         ft.addToBackStack("Back");
@@ -160,6 +158,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 List<Data> listData = new ArrayList<>();
                 for(int i = 0;i<response.body().size();i++){
                     Data data = new Data();
+                    data.updated = String.valueOf(response.body().get(i).getUpdated());
                     //get country info
                     data.countryInfoId = response.body().get(i).getCountryInfo().getId();
                     data.countryInfoIso2 = response.body().get(i).getCountryInfo().getIso2();
@@ -176,8 +175,9 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                     data.todayDeaths = response.body().get(i).getTodayDeaths();
                     data.recovered = response.body().get(i).getRecovered();
                     data.todayRecovered = response.body().get(i).getTodayRecovered();
+
                     listData.add(data);
-                    //Log.d("DataInserted1", data.country);
+                    Log.d("DataInserted1", data.country);
                 }
                 mCovidViewModel.insert(listData);
             }
@@ -191,8 +191,21 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.favorites:
+                Toast.makeText(getActivity(),"Favorites", Toast.LENGTH_SHORT);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, BookmarkFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_app, menu);
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
