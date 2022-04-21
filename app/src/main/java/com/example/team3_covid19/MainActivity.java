@@ -1,5 +1,6 @@
 package com.example.team3_covid19;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -76,6 +77,18 @@ public class MainActivity extends AppCompatActivity implements CovidListAdapter.
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            Log.i("MainActivity", "popping backstack");
+            fm.popBackStack();
+        } else {
+            Log.i("MainActivity", "nothing on backstack, calling super");
+            super.onBackPressed();
+        }
+    }
+
     /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -102,9 +115,9 @@ public class MainActivity extends AppCompatActivity implements CovidListAdapter.
     @Override
     protected void onResume() {
         boolean isAllow = SessionManagement.getInstance().isSessionActive(this, Calendar.getInstance().getTime());
-        if(!isAllow){
-            openLoginActivity();
-        }
+//        if(!isAllow){
+//            openLoginActivity();
+//        }
         super.onResume();
     }
 

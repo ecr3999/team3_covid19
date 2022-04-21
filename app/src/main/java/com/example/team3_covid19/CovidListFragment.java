@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.team3_covid19.Bookmark.FavViewModel;
 import com.example.team3_covid19.room.CovidDatabase;
 //import com.example.team3_covid19.room.CovidViewModel;
 import com.example.team3_covid19.room.CovidViewModel;
@@ -50,13 +51,13 @@ import retrofit2.Response;
  * Use the {@link CovidListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CovidListFragment extends Fragment implements CountryAdapter.OnItemClick, CovidListAdapter.OnItemClick {
-    private RecyclerView recyclerView;
+public class CovidListFragment extends Fragment implements  CovidListAdapter.OnItemClick {
     List<Data> data;
     List<Data> dataTemp;
     List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
+    private FavViewModel mFavViewModel;
     //LiveData<List<Data>> covidData;
     //private CovidViewModel covidViewModel;
     private static final int NUMBER_OF_THREADS = 1;
@@ -95,14 +96,15 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //Need to be included if created in fragment
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
+        mFavViewModel = new ViewModelProvider(this).get(FavViewModel.class);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_covid_list, container, false);
-        return view;
-        //return inflater.inflate(R.layout.fragment_covid_list, container, false);
-    }
+
+            View view = inflater.inflate(R.layout.fragment_covid_list, container, false);
+            return view;
+        }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -110,7 +112,6 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
         data = new ArrayList<>();
         dataTemp = new ArrayList<>();
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-        mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
 
         adapter = new CovidListAdapter(new CovidListAdapter.DataDiff());
         mCovidViewModel.getAllDatas().observe(getActivity(), datas -> {
@@ -131,8 +132,10 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
     }
 
     @Override
-    /*public void onItemClick(int position, Data data) {*/
     public void onItemClick(int position, Data data) {
+        List<Data> listData = new ArrayList<>();
+        listData.add(data);
+        mFavViewModel.insert(listData);
         Log.e("TAG", data.country);
     }
 
@@ -150,6 +153,7 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
                 List<Data> listData = new ArrayList<>();
                 for(int i = 0;i<response.body().size();i++){
                     Data data = new Data();
+                    data.updated = String.valueOf(response.body().get(i).getUpdated());
                     data.country = response.body().get(i).getCountry();
                     data.continent = response.body().get(i).getContinent();
                     data.cases = response.body().get(i).getCases();
@@ -158,6 +162,7 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
                     data.todayDeaths = response.body().get(i).getTodayDeaths();
                     data.recovered = response.body().get(i).getRecovered();
                     data.todayRecovered = response.body().get(i).getTodayRecovered();
+                    data.countryInfoFlag = response.body().get(i).getCountryInfo().getFlag();
                     listData.add(data);
                     Log.d("DataInserted1", data.country);
                 }
@@ -170,6 +175,20 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
                 Log.e("Failure:", t.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.favorites:
+                Toast.makeText(getActivity(),"Favorites", Toast.LENGTH_SHORT);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, BookmarkFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -237,7 +256,6 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
                     data.clear();
                     data.addAll(dataTemp);
                     adapter.submitList(data);
-                    Log.e("DATATEMP",dataTemp.size()+"");
                     adapter.notifyDataSetChanged();
                     //data.clear();
                     return true;
