@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -50,13 +51,15 @@ import retrofit2.Response;
  * Use the {@link CovidListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CovidListFragment extends Fragment implements CountryAdapter.OnItemClick, CovidListAdapter.OnItemClick {
+public class CovidListFragment extends Fragment implements CovidListAdapter.OnItemClick {
     private RecyclerView recyclerView;
     List<Data> data;
     List<Data> dataTemp;
     List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
+    private static final String TAG_ID = "TAG_ID";
+    private int id = -1;
     //LiveData<List<Data>> covidData;
     //private CovidViewModel covidViewModel;
     private static final int NUMBER_OF_THREADS = 1;
@@ -86,6 +89,10 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
      */
     // TODO: Rename and change types and number of parameters
     public static CovidListFragment newInstance() {
+        /*Bundle args = new Bundle();
+        args.putInt(TAG_ID,data.id);
+        CovidListFragment fragment = new CovidListFragment();
+        fragment.setArguments(args);*/
         CovidListFragment fragment = new CovidListFragment();
         return fragment;
     }
@@ -133,13 +140,16 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
     @Override
     /*public void onItemClick(int position, Data data) {*/
     public void onItemClick(int position, Data data) {
-        Log.e("TAG", data.country);
-    }
+        Log.e("TAGFRG", data.country+data.countryInfoId);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
+        ft.addToBackStack("Back");
+        ft.commit();
+        /*getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, CovidDetailFragment.newInstance(data.countryInfoId))
+                .commitNow();*/
 
-    /*public void startThread(){
-        //poolWorker.execute(deleteAll);
-        poolWorker.execute(insertData);
-    }*/
+    }
 
 
     public void getDataFromServer(){
@@ -150,6 +160,14 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
                 List<Data> listData = new ArrayList<>();
                 for(int i = 0;i<response.body().size();i++){
                     Data data = new Data();
+                    //get country info
+                    data.countryInfoId = response.body().get(i).getCountryInfo().getId();
+                    data.countryInfoIso2 = response.body().get(i).getCountryInfo().getIso2();
+                    data.countryInfoIso3 = response.body().get(i).getCountryInfo().getIso3();
+                    data.countryInfoLat = response.body().get(i).getCountryInfo().getLat();
+                    data.countryInfoLong = response.body().get(i).getCountryInfo().getJsonMemberLong();
+                    data.countryInfoFlag = response.body().get(i).getCountryInfo().getFlag();
+
                     data.country = response.body().get(i).getCountry();
                     data.continent = response.body().get(i).getContinent();
                     data.cases = response.body().get(i).getCases();
@@ -159,7 +177,7 @@ public class CovidListFragment extends Fragment implements CountryAdapter.OnItem
                     data.recovered = response.body().get(i).getRecovered();
                     data.todayRecovered = response.body().get(i).getTodayRecovered();
                     listData.add(data);
-                    Log.d("DataInserted1", data.country);
+                    //Log.d("DataInserted1", data.country);
                 }
                 mCovidViewModel.insert(listData);
             }
