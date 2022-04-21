@@ -1,6 +1,7 @@
 package com.example.team3_covid19.TabFragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import com.example.team3_covid19.room.Data;
 
 public class InfoFragment extends Fragment {
     private static Data data;
-
     public InfoFragment() {
 
     }
@@ -27,6 +27,7 @@ public class InfoFragment extends Fragment {
     public static InfoFragment newInstance(Data dataCovid) {
         InfoFragment fragment = new InfoFragment();
         data = dataCovid;
+        Log.e("DATAINSTANCE",data.countryInfoIso2+"");
         return fragment;
     }
 
@@ -44,7 +45,7 @@ public class InfoFragment extends Fragment {
         TextView tvLat = view.findViewById(R.id.tvLat);
         TextView tvLong = view.findViewById(R.id.tvLong);
         ImageView ivAvatar = view.findViewById(R.id.ivAvatar);
-        tvIso2.setText(data.countryInfoIso2);
+        tvIso2.setText(""+data.countryInfoIso2);
         tvIso3.setText(""+data.countryInfoIso3);
         tvLat.setText(""+data.countryInfoLat);
         tvLong.setText(""+data.countryInfoLong);
@@ -53,5 +54,10 @@ public class InfoFragment extends Fragment {
                 .apply(new RequestOptions().override(400,160))
                 .into(ivAvatar);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }

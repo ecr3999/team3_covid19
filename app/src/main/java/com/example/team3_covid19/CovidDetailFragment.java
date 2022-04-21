@@ -90,7 +90,7 @@ public class CovidDetailFragment extends Fragment {
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         //set default fragment on load
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.simpleFrameLayout, new InfoFragment());
+        ft.replace(R.id.simpleFrameLayout, InfoFragment.newInstance(data));
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

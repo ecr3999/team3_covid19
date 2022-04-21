@@ -29,9 +29,10 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:typeface="serif"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@+id/tvContinent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFav" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
 
@@ -84,12 +85,14 @@
         android:id="@+id/btnFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="368dp"
-        android:layout_marginBottom="7dp"
         android:background="@null"
+        android:contentDescription="@string/mark_favorite"
+        android:minWidth="32dp"
+        android:minHeight="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
         android:onClick="btnFav"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitleCountry"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_not_fav" />
     <!--<androidx.fragment.app.FragmentContainerView
