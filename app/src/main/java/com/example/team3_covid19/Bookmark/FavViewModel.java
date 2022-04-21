@@ -1,6 +1,7 @@
 package com.example.team3_covid19.Bookmark;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -26,7 +27,13 @@ public class FavViewModel extends AndroidViewModel {
     }
 
     public boolean countryIsExist(String country){
-        return favRepository.countryIsExist(country);
+        Boolean isExist;
+        isExist = favRepository.countryIsExist(country);
+        if(isExist)
+            Log.e("country", "isexist");
+        else
+            Log.e("country", "not exist");
+        return isExist;
     }
 
     public void insert(List<Data> data){

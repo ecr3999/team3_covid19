@@ -93,33 +93,6 @@ public class CovidDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_covid_detail, container, false);
-        btnFav = view.findViewById(R.id.btnFav);
-        boolean isExist = mFavViewModel.countryIsExist(data.country);
-
-        if(isExist)
-            btnFav.setImageResource(R.drawable.ic_fav);
-        else
-            btnFav.setImageResource(R.drawable.ic_not_fav);
-
-        btnFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isExist) //remove if in the list
-                {
-                    btnFav.setImageResource(R.drawable.ic_not_fav);
-                    mFavViewModel.delete(data.country);
-                }
-                else{ //add if not in the list
-                    btnFav.setImageResource(R.drawable.ic_fav);
-                    List<Data> dataList = new ArrayList<>();
-                    dataList.add(data);
-                    mFavViewModel.insert(dataList);
-                }
-
-            }
-
-        });
-
 
         simpleFrameLayout = (FrameLayout) view.findViewById(R.id.simpleFrameLayout);
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
@@ -167,7 +140,33 @@ public class CovidDetailFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        btnFav = view.findViewById(R.id.btnFav);
+        boolean isExist = mFavViewModel.countryIsExist(data.country);
+        if(isExist) {
+            btnFav.setImageResource(R.drawable.ic_fav);
+            Log.e("EXIST", "ada");
+        }
+        else
+            btnFav.setImageResource(R.drawable.ic_not_fav);
 
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isExist) //remove if in the list
+                {
+                    btnFav.setImageResource(R.drawable.ic_not_fav);
+                    mFavViewModel.delete(data.country);
+                }
+                else{ //add if not in the list
+                    btnFav.setImageResource(R.drawable.ic_fav);
+                    List<Data> dataList = new ArrayList<>();
+                    dataList.add(data);
+                    mFavViewModel.insert(dataList);
+                }
+
+            }
+
+        });
     }
 
     @Override

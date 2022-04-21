@@ -81,6 +81,7 @@ public class BookmarkFragment extends Fragment {
             if(datas.size()>0){
                 adapter.submitList(datas);
                 data = datas;
+                dataTemp.clear();
                 dataTemp.addAll(datas);
                 Log.e("DATATEMP",dataTemp.size()+"");
             }

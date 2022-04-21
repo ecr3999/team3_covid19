@@ -41,7 +41,7 @@ public class CovidViewHolder extends RecyclerView.ViewHolder{
     public void bind(Data data) {
         Glide.with(context)
                 .load(data.countryInfoFlag)
-                .apply(new RequestOptions().override(400,160))
+                .apply(new RequestOptions().override(200,100))
                 .into(ivAvatar);
         tvCountryName.setText(data.country);
     }
