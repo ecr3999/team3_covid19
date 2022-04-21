@@ -59,7 +59,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
-    private FavViewModel mFavViewModel;
     private static final String TAG_ID = "TAG_ID";
     private int id = -1;
     //LiveData<List<Data>> covidData;

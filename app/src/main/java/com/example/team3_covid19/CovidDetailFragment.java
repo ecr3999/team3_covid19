@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +21,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.team3_covid19.Bookmark.FavViewModel;
 import com.example.team3_covid19.TabFragment.InfoFragment;
 import com.example.team3_covid19.TabFragment.StatFragment;
 import com.example.team3_covid19.room.CovidViewModel;
 import com.example.team3_covid19.room.Data;
 import com.google.android.material.tabs.TabLayout;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,13 +41,15 @@ import retrofit2.Response;
  * Use the {@link CovidDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CovidDetailFragment extends Fragment {
+public class CovidDetailFragment extends Fragment{
     private static int idCountry;
     private static Data data;
     private RecyclerView recyclerView;
     private CovidViewModel mCovidViewModel;
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
+    private FavViewModel mFavViewModel;
+    private ImageButton btnFav;
 
     private final UserClickableCallback userClickableCallback = new UserClickableCallback() {
         @Override
@@ -52,6 +57,8 @@ public class CovidDetailFragment extends Fragment {
             Toast.makeText(view.getContext(),"Hello" + covidData.getCountry(), Toast.LENGTH_SHORT).show();
         }
     };
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,6 +87,7 @@ public class CovidDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //Need to be included if created in fragment
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
+        mFavViewModel = new ViewModelProvider(this).get(FavViewModel.class);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,18 +138,27 @@ public class CovidDetailFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        btnFav = view.findViewById(R.id.btnFav);
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Data> dataList = new ArrayList<>();
+                dataList.add(data);
+                mFavViewModel.insert(dataList);
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case  R.id.favorites:
-                Toast.makeText(getActivity(), "insert favorites here", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Favorites", Toast.LENGTH_SHORT);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, BookmarkFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit();
 
-                return true;
-            case R.id.search:
-                Toast.makeText(getActivity(),"insert search here",Toast.LENGTH_SHORT).show();
                 return true;
         }
 

@@ -21,9 +21,6 @@ public class FavViewModel extends AndroidViewModel {
         allDatas = favRepository.getAllDatas();
     }
 
-
-
-
     public LiveData<List<Data>> getAllDatas(){
         return allDatas;
     }
