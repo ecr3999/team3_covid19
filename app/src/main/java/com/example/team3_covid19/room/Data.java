@@ -18,13 +18,13 @@ public class Data {
     @ColumnInfo(name = "countryInfoFlag")
     public String countryInfoFlag;
     @ColumnInfo(name = "countryInfoId")
-    public String countryInfoId;
+    public int countryInfoId;
     @ColumnInfo(name = "countryInfoIso2")
     public String countryInfoIso2;
     @ColumnInfo(name = "countryInfoLat")
-    public String countryInfoLat;
+    public float countryInfoLat;
     @ColumnInfo(name = "countryInfoLong")
-    public String countryInfoLong;
+    public float countryInfoLong;
     @ColumnInfo(name = "countryInfoIso3")
     public String countryInfoIso3;
 
@@ -88,6 +88,238 @@ public class Data {
     @ColumnInfo(name = "critical_per_one_million")
     public String criticalPerOneMillion;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getUpdated() {
+        return updated;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getCountryInfoFlag() {
+        return countryInfoFlag;
+    }
+
+    public int getCountryInfoId() {
+        return countryInfoId;
+    }
+
+    public String getCountryInfoIso2() {
+        return countryInfoIso2;
+    }
+
+    public float getCountryInfoLat() {
+        return countryInfoLat;
+    }
+
+    public float getCountryInfoLong() {
+        return countryInfoLong;
+    }
+
+    public String getCountryInfoIso3() {
+        return countryInfoIso3;
+    }
+
+    public String getCases() {
+        return cases;
+    }
+
+    public int getTodayCases() {
+        return todayCases;
+    }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
+    public int getTodayDeaths() {
+        return todayDeaths;
+    }
+
+    public int getRecovered() {
+        return recovered;
+    }
+
+    public int getTodayRecovered() {
+        return todayRecovered;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public String getCritical() {
+        return critical;
+    }
+
+    public String getCasesPerOneMillion() {
+        return casesPerOneMillion;
+    }
+
+    public String getDeathsPerOneMillion() {
+        return deathsPerOneMillion;
+    }
+
+    public String getTests() {
+        return tests;
+    }
+
+    public String getTestsPerOneMillion() {
+        return testsPerOneMillion;
+    }
+
+    public String getPopulation() {
+        return population;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public String getOneCasePerPeople() {
+        return oneCasePerPeople;
+    }
+
+    public String getOneDeathPerPeople() {
+        return oneDeathPerPeople;
+    }
+
+    public String getOneTestPerPeople() {
+        return oneTestPerPeople;
+    }
+
+    public String getActivePerOneMillion() {
+        return activePerOneMillion;
+    }
+
+    public String getRecoveredPerOneMillion() {
+        return recoveredPerOneMillion;
+    }
+
+    public String getCriticalPerOneMillion() {
+        return criticalPerOneMillion;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUpdated(String updated) {
+        this.updated = updated;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCountryInfoFlag(String countryInfoFlag) {
+        this.countryInfoFlag = countryInfoFlag;
+    }
+
+    public void setCountryInfoId(int countryInfoId) {
+        this.countryInfoId = countryInfoId;
+    }
+
+    public void setCountryInfoIso2(String countryInfoIso2) {
+        this.countryInfoIso2 = countryInfoIso2;
+    }
+
+    public void setCountryInfoLat(float countryInfoLat) {
+        this.countryInfoLat = countryInfoLat;
+    }
+
+    public void setCountryInfoLong(float countryInfoLong) {
+        this.countryInfoLong = countryInfoLong;
+    }
+
+    public void setCountryInfoIso3(String countryInfoIso3) {
+        this.countryInfoIso3 = countryInfoIso3;
+    }
+
+    public void setCases(String cases) {
+        this.cases = cases;
+    }
+
+    public void setTodayCases(int todayCases) {
+        this.todayCases = todayCases;
+    }
+
+    public void setDeaths(int deaths) {
+        this.deaths = deaths;
+    }
+
+    public void setTodayDeaths(int todayDeaths) {
+        this.todayDeaths = todayDeaths;
+    }
+
+    public void setRecovered(int recovered) {
+        this.recovered = recovered;
+    }
+
+    public void setTodayRecovered(int todayRecovered) {
+        this.todayRecovered = todayRecovered;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    public void setCritical(String critical) {
+        this.critical = critical;
+    }
+
+    public void setCasesPerOneMillion(String casesPerOneMillion) {
+        this.casesPerOneMillion = casesPerOneMillion;
+    }
+
+    public void setDeathsPerOneMillion(String deathsPerOneMillion) {
+        this.deathsPerOneMillion = deathsPerOneMillion;
+    }
+
+    public void setTests(String tests) {
+        this.tests = tests;
+    }
+
+    public void setTestsPerOneMillion(String testsPerOneMillion) {
+        this.testsPerOneMillion = testsPerOneMillion;
+    }
+
+    public void setPopulation(String population) {
+        this.population = population;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public void setOneCasePerPeople(String oneCasePerPeople) {
+        this.oneCasePerPeople = oneCasePerPeople;
+    }
+
+    public void setOneDeathPerPeople(String oneDeathPerPeople) {
+        this.oneDeathPerPeople = oneDeathPerPeople;
+    }
+
+    public void setOneTestPerPeople(String oneTestPerPeople) {
+        this.oneTestPerPeople = oneTestPerPeople;
+    }
+
+    public void setActivePerOneMillion(String activePerOneMillion) {
+        this.activePerOneMillion = activePerOneMillion;
+    }
+
+    public void setRecoveredPerOneMillion(String recoveredPerOneMillion) {
+        this.recoveredPerOneMillion = recoveredPerOneMillion;
+    }
+
+    public void setCriticalPerOneMillion(String criticalPerOneMillion) {
+        this.criticalPerOneMillion = criticalPerOneMillion;
+    }
+
     public Data(String country, String cases) {
         this.country = country;
         this.cases = cases;
@@ -95,6 +327,9 @@ public class Data {
 
     public Data() {
 
+    }
+
+    public Data(String stringExtra) {
     }
 /*public Data(int id, String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String critical, String casesPerOneMillion, String deathsPerOneMillion, String tests, String testsPerOneMillion, String population, String continent, String oneCasePerPeople, String oneDeathPerPeople, String oneTestPerPeople, String activePerOneMillion, String recoveredPerOneMillion, String criticalPerOneMillion) {
         this.id = id;
