@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="39dp"
         android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
         android:text="Iso2"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5" />
@@ -60,8 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="100dp"
         android:text="Iso2 : "
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
