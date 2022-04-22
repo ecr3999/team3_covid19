@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="casual"
         android:layout_marginTop="24dp"
         android:text="Welcome to Covid19 Statistic App"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
+        android:fontFamily="casual"
         android:text="Please Login,"
         app:layout_constraintBottom_toTopOf="@+id/textField"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -73,17 +74,32 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!--<Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textField2"
+        app:layout_goneMarginTop="10dp"
+        tools:text="Login" />-->
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textField2"
-        tools:text="Login" />
+        app:layout_goneMarginTop="10dp"
+        tools:text="Login"
+    app:icon="@drawable/ic_baseline_login_24"
+    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
