@@ -3,4 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mark_favorite">Mark Favorite</string>
+    <string name="welcome_text">Welcome to Covid19 Statistic App</string>
+    <string name="login_text">Please Login,</string>
+    <string name="hint_username">Username</string>
 </resources>

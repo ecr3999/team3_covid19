@@ -9,68 +9,79 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:gravity="start"
         android:fontFamily="casual"
         android:layout_marginTop="24dp"
         android:textStyle="bold"
-        android:text="Welcome to Covid19 Statistic App"
+        android:text="@string/welcome_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_please_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
         android:fontFamily="casual"
-        android:text="Please Login,"
+        android:gravity="start"
+        android:text="@string/login_text"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textField"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:layout_editor_absoluteX="100dp" />
 
+    <ImageView
+        android:id="@+id/ivWelcome"
+        android:layout_width="241dp"
+        android:layout_height="225dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/txtUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_please_login"
+        app:srcCompat="@drawable/ic_welcome" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
+        android:id="@+id/txtUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:layout_marginBottom="8dp"
-        android:hint="Username"
-        android:nextFocusDown="@+id/textField2"
-        app:layout_constraintBottom_toTopOf="@+id/textField2"
+        android:hint="@string/hint_username"
+        android:nextFocusDown="@+id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/ivWelcome">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTxtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@+id/ivWelcome"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="137dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField2"
+        android:id="@+id/txtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:nextFocusDown="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTxtPassword"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginTop="15dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="201dp" />
 
@@ -90,18 +101,17 @@
 
     <Button
         android:id="@+id/btnLogin"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
+        android:text="Login"
+        app:icon="@drawable/ic_baseline_login_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textField2"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
         app:layout_goneMarginTop="10dp"
-        tools:text="Login"
-    app:icon="@drawable/ic_baseline_login_24"
-    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-    />
+        tools:text="Login" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

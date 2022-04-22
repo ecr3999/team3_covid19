@@ -12,7 +12,7 @@
         android:layout_marginTop="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/text_recovered"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -23,8 +23,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
         android:text="Iso2"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintBottom_toTopOf="@+id/text_today_case"
+        app:layout_constraintStart_toEndOf="@+id/text_today_case" />
 
     <TextView
         android:id="@+id/tvIso3"
@@ -53,7 +53,7 @@
         android:layout_marginStart="7dp"
         android:layout_marginTop="16dp"
         android:text="Longitude"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/text_today_death"
         app:layout_constraintTop_toBottomOf="@+id/tvLat" />
 
     <TextView
@@ -63,11 +63,11 @@
         android:layout_marginStart="7dp"
         android:layout_marginTop="16dp"
         android:text="Population"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/text_recovered"
         app:layout_constraintTop_toBottomOf="@+id/tvLong" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/text_case"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -77,39 +77,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/text_today_case"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Iso 3 : "
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/text_case"
+        app:layout_constraintTop_toBottomOf="@+id/text_case" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/text_death"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:text="Lattitude :"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/text_today_case"
+        app:layout_constraintTop_toBottomOf="@+id/text_today_case" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/text_today_death"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Longitude : "
         app:layout_constraintBaseline_toBaselineOf="@+id/tvLong"
-        app:layout_constraintStart_toStartOf="@+id/textView6" />
+        app:layout_constraintStart_toStartOf="@+id/text_death" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/text_recovered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Population : "
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/text_today_death"
+        app:layout_constraintTop_toBottomOf="@+id/text_today_death" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
