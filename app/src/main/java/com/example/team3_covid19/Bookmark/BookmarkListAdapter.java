@@ -1,16 +1,11 @@
 package com.example.team3_covid19.Bookmark;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-
-import com.example.team3_covid19.Bookmark.room.FavViewModel;
 import com.example.team3_covid19.CovidMenu.room.Data;
 
 public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {

@@ -27,7 +27,6 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.team3_covid19.Bookmark.BookmarkFragment;
-//import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
 import com.example.team3_covid19.CovidMenu.retrofit.CovidData;
 import com.example.team3_covid19.Profile.LoginActivity;
 import com.example.team3_covid19.Profile.ProfileDataFragment;
@@ -47,11 +46,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CovidListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CovidListFragment extends Fragment implements CovidListAdapter.OnItemClick {
     private RecyclerView recyclerView;
     List<Data> data;
@@ -59,10 +53,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
-    private static final String TAG_ID = "TAG_ID";
-    private int id = -1;
-    //LiveData<List<Data>> covidData;
-    //private CovidViewModel covidViewModel;
+
     private static final int NUMBER_OF_THREADS = 1;
     private Executor poolWorker = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private Executor mainThread = new Executor() {
@@ -74,22 +65,10 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         }
     };
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
-
     public CovidListFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment CovidListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CovidListFragment newInstance() {
         CovidListFragment fragment = new CovidListFragment();
         return fragment;
@@ -107,8 +86,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_covid_list, container, false);
         return view;
-        //return inflater.inflate(R.layout.fragment_covid_list, container, false);
-    }
+   }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -124,10 +102,8 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
             if (datas.size() > 0) {
                 adapter.submitList(datas);
                 data = datas;
-                //dataTemp = datas;
                 dataTemp.clear();
                 dataTemp.addAll(datas);
-                Log.e("DATATEMP", dataTemp.size() + "");
             } else {
                 getDataFromServer();
             }
@@ -144,7 +120,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         ft.addToBackStack("Back");
         ft.commit();
     }
-
 
     public void getDataFromServer() {
         RetrofitCovidData retrofitCovidData = new RetrofitCovidData();
@@ -173,15 +148,13 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                     data.todayRecovered = response.body().get(i).getTodayRecovered();
                     data.population = response.body().get(i).getPopulation();
                     listData.add(data);
-                    Log.d("DataInserted1", data.country);
                 }
                 mCovidViewModel.insert(listData);
             }
 
             @Override
             public void onFailure(Call<List<CovidData>> call, Throwable t) {
-                // Toast.makeText(MainActivity.this, "An error has occured", Toast.LENGTH_LONG).show();
-                Log.e("Failure:", t.getMessage());
+               Log.e("Failure:", t.getMessage());
             }
         });
     }
@@ -206,13 +179,11 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                Log.e("LOGOUT", item.getItemId()+"");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 getActivity().invalidateOptionsMenu();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -247,11 +218,8 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 ArrayList<Data> alFoundData = null;
                 Log.e("DataSearch", data.size() + "");
                 alFoundData = searchUser(query);
-                //return true;
                 if (alFoundData.size() != 0) {
                     data.clear();
-                    //dataTemp.addAll(alFoundData);
-
                     data.addAll(alFoundData);
                     adapter.notifyDataSetChanged();
                     return true;
@@ -280,9 +248,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                     data.clear();
                     data.addAll(dataTemp);
                     adapter.submitList(data);
-                    Log.e("DATATEMP", dataTemp.size() + "");
                     adapter.notifyDataSetChanged();
-                    //data.clear();
                     return true;
                 }
                 return false;

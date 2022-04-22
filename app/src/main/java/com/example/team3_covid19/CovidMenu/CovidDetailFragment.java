@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.team3_covid19.Bookmark.BookmarkFragment;
 import com.example.team3_covid19.Bookmark.room.FavViewModel;
@@ -35,20 +33,13 @@ import com.example.team3_covid19.UserClickableCallback;
 import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
 import com.example.team3_covid19.CovidMenu.room.Data;
 import com.google.android.material.tabs.TabLayout;
-//import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CovidDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CovidDetailFragment extends Fragment {
-    private static int idCountry;
     private static Data data;
-    private RecyclerView recyclerView;
     private CovidViewModel mCovidViewModel;
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
@@ -62,23 +53,10 @@ public class CovidDetailFragment extends Fragment {
         }
     };
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
-
     public CovidDetailFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment CovidListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CovidDetailFragment newInstance(Data dataCovid) {
         CovidDetailFragment fragment = new CovidDetailFragment();
         data = dataCovid;
@@ -121,7 +99,6 @@ public class CovidDetailFragment extends Fragment {
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
@@ -130,12 +107,8 @@ public class CovidDetailFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
         TextView tvTitleCountry = view.findViewById(R.id.tvTitleCountry);
         TextView tvContinent = view.findViewById(R.id.tvContinent);
-        //ImageView imgFlag = view.findViewById(R.id.imgFlag);
-
-        //Picasso.get().load(data.countryInfoFlag).into(imgFlag);
         tvTitleCountry.setText(data.country);
         tvContinent.setText(data.continent);
         return view;
@@ -149,7 +122,6 @@ public class CovidDetailFragment extends Fragment {
         boolean isExist = mFavViewModel.isCountryExist(data.getCountry());
         if(isExist) {
             btnFav.setImageResource(R.drawable.ic_fav);
-            Log.e("EXIST", "ada");
         }
         else
             btnFav.setImageResource(R.drawable.ic_not_fav);

@@ -25,13 +25,6 @@ public class CovidViewHolder extends RecyclerView.ViewHolder{
         ivAvatar = itemView.findViewById(R.id.ivAvatar);
         tvCountryName = itemView.findViewById(R.id.tvCountryName);
         btnFav = itemView.findViewById(R.id.btnFav);
-
-/*        btnFav.setOnClickListener(new View.OnClickListener()   {
-            public void onClick(View v)  {
-                context.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.covidLis, UserInputFragment.newInstance())
-                        .commitNow();
-            });*/
     }
 
     public void bind(Data data) {

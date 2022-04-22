@@ -1,9 +1,6 @@
 package com.example.team3_covid19.CovidMenu.retrofit;
-
-import com.example.team3_covid19.CovidMenu.retrofit.DataCovidService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

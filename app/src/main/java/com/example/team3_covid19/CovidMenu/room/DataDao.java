@@ -12,19 +12,10 @@ import java.util.List;
 public interface DataDao {
     @Query("SELECT * FROM data")
     LiveData<List<Data>> getAll();
-    //List<Data> getAll();
-
-    @Query("SELECT COUNT(*) FROM data")
-    int countAllData();
-
-    @Query("SELECT * FROM data WHERE id IN (:ids)")
-    List<Data> loadAllByIds(int[] ids);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Data> datas);
 
-    /*@Delete
-    void deleteAll(Data data);*/
     @Query("DELETE FROM data")
     void deleteAll();
 

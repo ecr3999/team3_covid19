@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-//import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
 import com.example.team3_covid19.MainActivity;
 import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
 import com.example.team3_covid19.Profile.retrofit.RetrofitLoginData;

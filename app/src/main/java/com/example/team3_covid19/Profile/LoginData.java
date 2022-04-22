@@ -2,8 +2,6 @@
 package com.example.team3_covid19.Profile;
 
 import javax.annotation.Generated;
-
-import com.example.team3_covid19.Profile.UserData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

@@ -13,14 +13,11 @@ import com.example.team3_covid19.CovidMenu.CovidListAdapter;
 import com.example.team3_covid19.CovidMenu.CovidListFragment;
 import com.example.team3_covid19.Profile.LoginActivity;
 import com.example.team3_covid19.Profile.SessionManagement;
-//import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
 import com.example.team3_covid19.CovidMenu.room.Data;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements CovidListAdapter.OnItemClick{
-    private static final int NUMBER_OF_THREADS = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +35,8 @@ public class MainActivity extends AppCompatActivity implements CovidListAdapter.
     public void onBackPressed(){
         FragmentManager fm = getFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
-            Log.i("MainActivity", "popping backstack");
             fm.popBackStack();
         } else {
-            Log.i("MainActivity", "nothing on backstack, calling super");
             super.onBackPressed();
         }
     }
@@ -49,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements CovidListAdapter.
     @Override
     protected void onResume() {
         boolean isAllow = SessionManagement.getInstance().isSessionActive(this, Calendar.getInstance().getTime());
-//        if(!isAllow){
-//            openLoginActivity();
-//        }
+        if(!isAllow){
+            openLoginActivity();
+        }
         super.onResume();
     }
 
@@ -63,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements CovidListAdapter.
 
     @Override
     public void onItemClick(int position, Data data) {
-        Log.e("TAG", data.country);
     }
 
     @Override

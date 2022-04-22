@@ -10,9 +10,7 @@ import com.example.team3_covid19.CovidMenu.room.Data;
 import java.util.List;
 
 public class FavViewModel extends AndroidViewModel {
-
     private FavRepository favRepository;
-    private Boolean isExist;
     private final LiveData<List<Data>> allDatas;
 
     public FavViewModel(Application application) {
@@ -24,22 +22,15 @@ public class FavViewModel extends AndroidViewModel {
     public LiveData<List<Data>> getAllDatas(){
         return allDatas;
     }
-
     public void setFav(Data data){
         favRepository.setFav(data);
     }
-
     public boolean isCountryExist(String country){
         return favRepository.isCountryExist(country);
     }
-
     public void insert(List<Data> data){
         favRepository.insert(data);
     }
-/*public void update(User user){
-        userRepository.update(user);
-    }*/
-
     public void deleteAll(){
         favRepository.deleteAll();
     }

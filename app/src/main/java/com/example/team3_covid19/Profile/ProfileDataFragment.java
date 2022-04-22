@@ -21,16 +21,9 @@ import com.example.team3_covid19.Bookmark.BookmarkFragment;
 import com.example.team3_covid19.CovidMenu.CovidListFragment;
 import com.example.team3_covid19.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileDataFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileDataFragment extends Fragment {
     public static final String LOGIN_DATA = "com.example.team3_covid19.Profile.LoginActivity.LOGIN_DATA";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    // TODO: Rename and change types of parameters
+
     public ProfileDataFragment() {
         // Required empty public constructor
     }
@@ -52,7 +45,6 @@ public class ProfileDataFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_data, container, false);
         SharedPreferences sharedPreferences;
         sharedPreferences = requireActivity().getSharedPreferences(LOGIN_DATA, Context.MODE_PRIVATE);
-        String a = "";
         String username = sharedPreferences.getString("username", "");
         String fullname = sharedPreferences.getString("full_name", "");
         String email = sharedPreferences.getString("email", "");
@@ -99,7 +91,6 @@ public class ProfileDataFragment extends Fragment {
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                Log.e("LOGOUT", item.getItemId()+"");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 getActivity().invalidateOptionsMenu();

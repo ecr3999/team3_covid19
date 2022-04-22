@@ -31,31 +31,17 @@ import com.example.team3_covid19.CovidMenu.room.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BookmarkFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class BookmarkFragment extends Fragment implements BookmarkListAdapter.OnItemClick{
     List<Data> data;
     List<Data> dataTemp;
     private BookmarkListAdapter adapter;
     private FavViewModel mFavViewModel;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
     public BookmarkFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     * @return A new instance of fragment BookmarkFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static BookmarkFragment newInstance() {
         BookmarkFragment fragment = new BookmarkFragment();
         Bundle args = new Bundle();
@@ -73,7 +59,6 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
             ft.commit();
         }
         else if(action.equals("unfav")){
-            Log.e("delete", "delete");
             mFavViewModel.delete(data.getCountry());
         }
     }
@@ -87,7 +72,6 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bookmark, container, false);
     }
 
@@ -106,7 +90,6 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
                 data = datas;
                 dataTemp.clear();
                 dataTemp.addAll(datas);
-                Log.e("DATATEMP",dataTemp.size()+"");
             }
         });
         adapter.setOnClickListener(BookmarkFragment.this);
@@ -148,7 +131,6 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                Log.e("LOGOUT", item.getItemId()+"");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 getActivity().invalidateOptionsMenu();
