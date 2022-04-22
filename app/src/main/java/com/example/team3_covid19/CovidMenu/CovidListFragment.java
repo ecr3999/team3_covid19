@@ -81,6 +81,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -115,6 +116,12 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
 
     @Override
     public void onItemClick(int position, Data data) {
+
+        if(this.data.size() !=  dataTemp.size()){
+            this.data.clear();
+            this.data.addAll(dataTemp);
+        };
+        Log.e("TAG "+ this.data.size(), dataTemp.size()+"");
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
         ft.addToBackStack("Back");
