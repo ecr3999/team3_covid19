@@ -1,5 +1,6 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.CovidMenu;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -7,9 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.CovidMenu.room.Data;
 
-public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {
+public class CovidListAdapter extends ListAdapter<Data, CovidViewHolder> {
     private OnItemClick itemClick;
 
     public interface OnItemClick {
@@ -20,18 +21,19 @@ public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {
         itemClick = onClick;
     }
 
-    public BookmarkListAdapter(@NonNull DiffUtil.ItemCallback<Data> diffCallback) {
+    public CovidListAdapter(@NonNull DiffUtil.ItemCallback<Data> diffCallback) {
         super(diffCallback);
     }
 
     @Override
-    public BookmarkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return BookmarkViewHolder.create(parent);
+    public CovidViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return CovidViewHolder.create(parent);
     }
 
     @Override
-    public void onBindViewHolder(BookmarkViewHolder holder, int position) {
+    public void onBindViewHolder(CovidViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Data current = getItem(position);
+        System.out.println(current.countryInfoFlag);
         holder.bind(current);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,15 +41,6 @@ public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {
                 itemClick.onItemClick(position, current);
             }
         });
-        /*TextView tvCountryName;
-        tvCountryName = holder.findViewById(R.id.countryName);
-        holder.itemView..setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.onItemClick(position, data[position]);
-            }
-        });*/
-        //Toast.makeText(CovidListAdapter.this, "COuntry: "+current.country, Toast.LENGTH_SHORT).show();
     }
 
     static class DataDiff extends DiffUtil.ItemCallback<Data> {

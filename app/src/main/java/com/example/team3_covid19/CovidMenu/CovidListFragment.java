@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.CovidMenu;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -9,13 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -30,17 +26,20 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.team3_covid19.Bookmark.FavViewModel;
-import com.example.team3_covid19.room.CovidDatabase;
-//import com.example.team3_covid19.room.CovidViewModel;
-import com.example.team3_covid19.room.CovidViewModel;
-import com.example.team3_covid19.room.Data;
-import com.example.team3_covid19.room.DataDao;
+import com.example.team3_covid19.Bookmark.BookmarkFragment;
+//import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
+import com.example.team3_covid19.CovidMenu.retrofit.CovidData;
+import com.example.team3_covid19.Profile.LoginActivity;
+import com.example.team3_covid19.Profile.ProfileDataFragment;
+import com.example.team3_covid19.R;
+import com.example.team3_covid19.CovidMenu.retrofit.RetrofitCovidData;
+import com.example.team3_covid19.Profile.SessionManagement;
+import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
+import com.example.team3_covid19.CovidMenu.room.Data;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -139,17 +138,11 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     }
 
     @Override
-    /*public void onItemClick(int position, Data data) {*/
     public void onItemClick(int position, Data data) {
-        Log.e("ClickedItem", data.country + data.countryInfoId);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
         ft.addToBackStack("Back");
         ft.commit();
-        /*getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, CovidDetailFragment.newInstance(data.countryInfoId))
-                .commitNow();*/
-
     }
 
 
@@ -204,12 +197,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                         .commit();
                 getActivity().invalidateOptionsMenu();
                 return true;
-
-            case R.id.myprofile:
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, ProfileDataFragment.newInstance())
-                        .addToBackStack("myprofile")
-                        .commit();
             case R.id.profile:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, ProfileDataFragment.newInstance())

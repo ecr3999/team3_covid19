@@ -1,15 +1,15 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.CovidMenu;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,24 +18,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.team3_covid19.Bookmark.FavRepository;
-import com.example.team3_covid19.Bookmark.FavViewModel;
+import com.example.team3_covid19.Bookmark.BookmarkFragment;
+import com.example.team3_covid19.Bookmark.room.FavViewModel;
+import com.example.team3_covid19.CovidMenu.retrofit.CovidData;
+import com.example.team3_covid19.Profile.ProfileDataFragment;
+import com.example.team3_covid19.R;
+import com.example.team3_covid19.Profile.SessionManagement;
 import com.example.team3_covid19.TabFragment.InfoFragment;
 import com.example.team3_covid19.TabFragment.StatFragment;
-import com.example.team3_covid19.room.CovidViewModel;
-import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.UserClickableCallback;
+import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
+import com.example.team3_covid19.CovidMenu.room.Data;
 import com.google.android.material.tabs.TabLayout;
 //import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -177,6 +177,7 @@ public class CovidDetailFragment extends Fragment {
                         .replace(R.id.container, BookmarkFragment.newInstance())
                         .addToBackStack("favorites")
                         .commit();
+                return true;
             case R.id.profile:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, ProfileDataFragment.newInstance())
@@ -194,6 +195,11 @@ public class CovidDetailFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_app, menu);
     }
 
 }

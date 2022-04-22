@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Map;
+import com.example.team3_covid19.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +19,7 @@ import java.util.Map;
  * create an instance of this fragment.
  */
 public class ProfileDataFragment extends Fragment {
-    public static final String LOGIN_DATA = "com.example.team3_covid19.LoginActivity.LOGIN_DATA";
+    public static final String LOGIN_DATA = "com.example.team3_covid19.Profile.LoginActivity.LOGIN_DATA";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     // TODO: Rename and change types of parameters

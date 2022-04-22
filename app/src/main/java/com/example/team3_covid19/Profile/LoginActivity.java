@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Profile;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,25 +12,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+//import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
+import com.example.team3_covid19.MainActivity;
+import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
+import com.example.team3_covid19.Profile.retrofit.RetrofitLoginData;
+import com.example.team3_covid19.R;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.internal.http2.Header;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String LOGIN_DATA = "com.example.team3_covid19.LoginActivity.LOGIN_DATA";
+    public static final String LOGIN_DATA = "com.example.team3_covid19.Profile.LoginActivity.LOGIN_DATA";
 
     TextView tvUsername, tvPassword;
     Button btnLogin;
     LoginData loginData = null;
+    private CovidViewModel mCovidViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
         tvUsername = findViewById(R.id.editTxtUsername);
         tvPassword = findViewById(R.id.editTxtPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -69,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println(response.body().toString());
 
                 if(loginData.getStatus()){
-
                     startStoreSession();
                     storeUserData(LoginActivity.this, response.body().getData());
                     Intent intent= new Intent(LoginActivity.this, MainActivity.class);
@@ -102,4 +110,3 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 }
-

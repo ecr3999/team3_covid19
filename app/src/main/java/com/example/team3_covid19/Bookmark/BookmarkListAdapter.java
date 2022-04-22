@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Bookmark;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.CovidMenu.room.Data;
 
-public class CovidListAdapter extends ListAdapter<Data, CovidViewHolder> {
+public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {
     private OnItemClick itemClick;
 
     public interface OnItemClick {
@@ -20,19 +20,18 @@ public class CovidListAdapter extends ListAdapter<Data, CovidViewHolder> {
         itemClick = onClick;
     }
 
-    public CovidListAdapter(@NonNull DiffUtil.ItemCallback<Data> diffCallback) {
+    public BookmarkListAdapter(@NonNull DiffUtil.ItemCallback<Data> diffCallback) {
         super(diffCallback);
     }
 
     @Override
-    public CovidViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return CovidViewHolder.create(parent);
+    public BookmarkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return BookmarkViewHolder.create(parent);
     }
 
     @Override
-    public void onBindViewHolder(CovidViewHolder holder, int position) {
+    public void onBindViewHolder(BookmarkViewHolder holder, int position) {
         Data current = getItem(position);
-        System.out.println(current.countryInfoFlag);
         holder.bind(current);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

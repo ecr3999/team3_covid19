@@ -1,4 +1,4 @@
-package com.example.team3_covid19.room;
+package com.example.team3_covid19.CovidMenu.room;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

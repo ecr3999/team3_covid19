@@ -1,12 +1,10 @@
-package com.example.team3_covid19.room;
+package com.example.team3_covid19.CovidMenu.room;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-
-import com.example.team3_covid19.room.Data;
 
 import java.util.List;
 
@@ -25,6 +23,8 @@ public interface DataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Data> datas);
 
+    /*@Delete
+    void deleteAll(Data data);*/
     @Query("DELETE FROM data")
     void deleteAll();
 

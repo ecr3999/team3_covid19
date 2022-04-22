@@ -1,11 +1,9 @@
-package com.example.team3_covid19.room;
+package com.example.team3_covid19.CovidMenu.room;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 

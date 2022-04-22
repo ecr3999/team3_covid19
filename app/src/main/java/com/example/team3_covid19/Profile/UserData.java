@@ -1,5 +1,5 @@
 
-package com.example.team3_covid19;
+package com.example.team3_covid19.Profile;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;

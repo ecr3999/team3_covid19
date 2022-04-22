@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,9 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SessionManagement {
-    public static final String SESSION_PREFERENCE = "com.example.team3_covid19.SessionManagement.SESSION_PREFERENCE";
-    public static final String SESSION_TOKEN = "com.example.team3_covid19.SessionManagement.SESSION_TOKEN";
-    public static final String SESSION_EXPIRE_TIME = "com.example.team3_covid19.SessionManagement.SESSION_EXPIRE_TIME";
+    public static final String SESSION_PREFERENCE = "com.example.team3_covid19.Profile.SessionManagement.SESSION_PREFERENCE";
+    public static final String SESSION_TOKEN = "com.example.team3_covid19.Profile.SessionManagement.SESSION_TOKEN";
+    public static final String SESSION_EXPIRE_TIME = "com.example.team3_covid19.Profile.SessionManagement.SESSION_EXPIRE_TIME";
 
     private static SessionManagement instance;
     public static SessionManagement getInstance(){

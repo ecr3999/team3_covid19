@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Profile.retrofit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

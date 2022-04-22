@@ -1,13 +1,12 @@
-package com.example.team3_covid19.Bookmark;
+package com.example.team3_covid19.Bookmark.room;
 
 import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.team3_covid19.room.CovidDatabase;
-import com.example.team3_covid19.room.Data;
-import com.example.team3_covid19.room.DataDao;
+import com.example.team3_covid19.CovidMenu.room.Data;
+import com.example.team3_covid19.CovidMenu.room.DataDao;
 
 import java.util.List;
 

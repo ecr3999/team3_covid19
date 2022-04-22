@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Bookmark;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.R;
+import com.example.team3_covid19.CovidMenu.room.Data;
 
 public class BookmarkViewHolder extends RecyclerView.ViewHolder{
     private final ImageView ivAvatar;

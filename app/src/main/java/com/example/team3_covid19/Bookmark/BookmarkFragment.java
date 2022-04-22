@@ -1,4 +1,4 @@
-package com.example.team3_covid19;
+package com.example.team3_covid19.Bookmark;
 
 import android.os.Bundle;
 
@@ -14,8 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.team3_covid19.Bookmark.FavViewModel;
-import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.Bookmark.room.FavViewModel;
+import com.example.team3_covid19.R;
+import com.example.team3_covid19.CovidMenu.room.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,7 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
