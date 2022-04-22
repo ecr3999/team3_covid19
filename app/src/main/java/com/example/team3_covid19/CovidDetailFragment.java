@@ -177,11 +177,12 @@ public class CovidDetailFragment extends Fragment {
                         .replace(R.id.container, BookmarkFragment.newInstance())
                         .addToBackStack("favorites")
                         .commit();
-            case R.id.myprofile:
+            case R.id.profile:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, ProfileDataFragment.newInstance())
-                        .addToBackStack("myprofile")
+                        .addToBackStack("profile")
                         .commit();
+                return true;
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
                 return true;

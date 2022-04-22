@@ -9,9 +9,12 @@
         android:id="@+id/tvCase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Case"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/tvTodayCase"
+        android:text="Case"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -20,18 +23,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Today Case"
-        app:layout_constraintEnd_toEndOf="@+id/tvDeath"
-        app:layout_constraintStart_toEndOf="@+id/tvDeath"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCase" />
 
     <TextView
         android:id="@+id/tvDeath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
         android:text="Death"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTodayCase" />
 
     <TextView
@@ -40,7 +47,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:text="Today Death"
-        app:layout_constraintStart_toStartOf="@+id/tvDeath"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDeath" />
 
     <TextView
@@ -49,7 +59,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:text="Recovered"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTodayDeath" />
 
     <TextView
@@ -58,7 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:text="Today Recovered"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRecovered" />
 
     <TextView
@@ -117,5 +133,12 @@
         android:text="Today recovered : "
         app:layout_constraintBaseline_toBaselineOf="@+id/tvTodayRecovered"
         app:layout_constraintStart_toStartOf="@+id/textView8" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

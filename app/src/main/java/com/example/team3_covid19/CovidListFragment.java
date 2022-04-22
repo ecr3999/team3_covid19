@@ -201,7 +201,12 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                         .replace(R.id.container, BookmarkFragment.newInstance())
                         .addToBackStack(null)
                         .commit();
-
+            case R.id.profile:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ProfileDataFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit();
+                return true;
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
                 return true;
