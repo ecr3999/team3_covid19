@@ -18,7 +18,7 @@ public class CovidListAdapter extends ListAdapter<Data, CovidViewHolder> {
     }
 
     public void setOnClickListener(OnItemClick onClick) {
-        itemClick = onClick;
+                itemClick = onClick;
     }
 
     public CovidListAdapter(@NonNull DiffUtil.ItemCallback<Data> diffCallback) {

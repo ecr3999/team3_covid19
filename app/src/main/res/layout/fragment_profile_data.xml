@@ -19,6 +19,16 @@
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars" />-->
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/ic_profile"
+        app:layout_constraintBottom_toTopOf="@+id/lblUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/lblUsername"
         android:layout_width="wrap_content"
@@ -106,14 +116,5 @@
         app:layout_constraintStart_toEndOf="@+id/lblEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvFullname" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblEmail"
-        android:src="@drawable/ic_profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

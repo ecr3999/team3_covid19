@@ -1,19 +1,23 @@
 package com.example.team3_covid19.Bookmark;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.example.team3_covid19.Bookmark.room.FavViewModel;
 import com.example.team3_covid19.CovidMenu.room.Data;
 
 public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {
     private OnItemClick itemClick;
 
     public interface OnItemClick {
-        void onItemClick(int position, Data data);
+        void onItemClick(int position, Data data, String view);
     }
 
     public void setOnClickListener(OnItemClick onClick) {
@@ -30,24 +34,21 @@ public class BookmarkListAdapter extends ListAdapter<Data, BookmarkViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(BookmarkViewHolder holder, int position) {
+    public void onBindViewHolder(BookmarkViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Data current = getItem(position);
         holder.bind(current);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                itemClick.onItemClick(position, current);
+                itemClick.onItemClick(position, current, "detail");
             }
         });
-        /*TextView tvCountryName;
-        tvCountryName = holder.findViewById(R.id.countryName);
-        holder.itemView..setOnClickListener(new View.OnClickListener() {
+        holder.getBtnDelete().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.onItemClick(position, data[position]);
+                itemClick.onItemClick(position, current, "unfav");
             }
-        });*/
-        //Toast.makeText(CovidListAdapter.this, "COuntry: "+current.country, Toast.LENGTH_SHORT).show();
+        });
     }
 
     static class DataDiff extends DiffUtil.ItemCallback<Data> {

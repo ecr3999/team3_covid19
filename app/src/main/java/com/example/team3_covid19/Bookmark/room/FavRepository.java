@@ -69,9 +69,8 @@ public class FavRepository {
             Log.e("TAG", "exist in favorite");
         });
         while(finish != true)
-            Log.e("TAG", "waiting");
         {
-
+            Log.e("TAG", "waiting");
         }
         if(flag == true)
             Log.e("TAG2", "exist in favorite");

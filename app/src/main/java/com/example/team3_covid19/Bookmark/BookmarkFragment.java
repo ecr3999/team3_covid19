@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.team3_covid19.Bookmark.room.FavViewModel;
+import com.example.team3_covid19.CovidMenu.CovidDetailFragment;
 import com.example.team3_covid19.CovidMenu.CovidListFragment;
 import com.example.team3_covid19.Profile.ProfileDataFragment;
 import com.example.team3_covid19.Profile.SessionManagement;
@@ -60,8 +62,18 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
     }
 
     @Override
-    public void onItemClick(int position, Data data) {
-        Log.e("ClickedItem", data.country + data.countryInfoId);
+    public void onItemClick(int position, Data data, String action) {
+        if (action.equals("detail"))
+        {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
+            ft.addToBackStack("Back");
+            ft.commit();
+        }
+        else if(action.equals("unfav")){
+            Log.e("delete", "delete");
+            mFavViewModel.delete(data.getCountry());
+        }
     }
 
     @Override
@@ -95,6 +107,7 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
                 Log.e("DATATEMP",dataTemp.size()+"");
             }
         });
+        adapter.setOnClickListener(BookmarkFragment.this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
