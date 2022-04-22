@@ -1,5 +1,6 @@
 package com.example.team3_covid19.Bookmark;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import com.example.team3_covid19.Bookmark.room.FavViewModel;
 import com.example.team3_covid19.CovidMenu.CovidDetailFragment;
 import com.example.team3_covid19.CovidMenu.CovidListFragment;
+import com.example.team3_covid19.Profile.LoginActivity;
 import com.example.team3_covid19.Profile.ProfileDataFragment;
 import com.example.team3_covid19.Profile.SessionManagement;
 import com.example.team3_covid19.R;
@@ -145,6 +147,11 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
                 return true;
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Log.e("LOGOUT", item.getItemId()+"");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().invalidateOptionsMenu();
                 return true;
         }
 

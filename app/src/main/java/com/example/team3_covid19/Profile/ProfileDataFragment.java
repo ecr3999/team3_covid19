@@ -1,12 +1,14 @@
 package com.example.team3_covid19.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -96,6 +98,11 @@ public class ProfileDataFragment extends Fragment {
                 return true;
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Log.e("LOGOUT", item.getItemId()+"");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().invalidateOptionsMenu();
                 return true;
         }
 
