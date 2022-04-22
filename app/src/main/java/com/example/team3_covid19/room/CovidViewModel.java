@@ -32,9 +32,6 @@ public class CovidViewModel extends AndroidViewModel {
         return allDatas;
     }
 
-    /*public List<Data> getAllDatas(){
-        return allDatas;
-    }*/
     public void insert(List<Data> data){
         covidRepository.insert(data);
     }

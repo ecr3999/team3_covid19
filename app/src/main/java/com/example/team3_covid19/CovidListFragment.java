@@ -2,6 +2,7 @@ package com.example.team3_covid19;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -53,16 +54,12 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class CovidListFragment extends Fragment implements CovidListAdapter.OnItemClick {
-    private RecyclerView recyclerView;
     List<Data> data;
     List<Data> dataTemp;
-    List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
     private static final String TAG_ID = "TAG_ID";
     private int id = -1;
-    //LiveData<List<Data>> covidData;
-    //private CovidViewModel covidViewModel;
     private static final int NUMBER_OF_THREADS = 1;
     private Executor poolWorker = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private Executor mainThread = new Executor() {
@@ -145,9 +142,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
         ft.addToBackStack("Back");
         ft.commit();
-        /*getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, CovidDetailFragment.newInstance(data.countryInfoId))
-                .commitNow();*/
 
     }
 
@@ -199,16 +193,33 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 Toast.makeText(getActivity(), "Favorites", Toast.LENGTH_SHORT);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, BookmarkFragment.newInstance())
-                        .addToBackStack(null)
+                        .addToBackStack("favorites")
                         .commit();
+                getActivity().invalidateOptionsMenu();
+                return true;
+
+            case R.id.myprofile:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ProfileDataFragment.newInstance())
+                        .addToBackStack("myprofile")
+                        .commit();
+                getActivity().invalidateOptionsMenu();
+                return true;
 
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Log.e("LOGOUT", item.getItemId()+"");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().invalidateOptionsMenu();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

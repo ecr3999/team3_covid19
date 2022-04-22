@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity implements CovidListAdapter.
     @Override
     protected void onResume() {
         boolean isAllow = SessionManagement.getInstance().isSessionActive(this, Calendar.getInstance().getTime());
-//        if(!isAllow){
-//            openLoginActivity();
-//        }
+        if(!isAllow){
+            openLoginActivity();
+        }
         super.onResume();
     }
 

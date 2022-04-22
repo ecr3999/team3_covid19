@@ -50,6 +50,7 @@
         android:layout_marginTop="34dp"
         android:layout_marginBottom="8dp"
         android:hint="Username"
+        android:nextFocusDown="@+id/textField2"
         app:layout_constraintBottom_toTopOf="@+id/textField2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -60,6 +61,7 @@
             android:id="@+id/editTxtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="137dp" />
 
@@ -71,6 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:hint="Password"
+        android:inputType="textPassword"
+        android:nextFocusDown="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">

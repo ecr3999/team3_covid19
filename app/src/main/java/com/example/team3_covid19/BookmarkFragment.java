@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.team3_covid19.Bookmark.FavViewModel;
-import com.example.team3_covid19.room.CovidViewModel;
 import com.example.team3_covid19.room.Data;
 
 import java.util.ArrayList;
@@ -27,12 +25,10 @@ import java.util.List;
  * Use the {@link BookmarkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookmarkFragment extends Fragment implements CovidListAdapter.OnItemClick{
+public class BookmarkFragment extends Fragment implements BookmarkListAdapter.OnItemClick{
     List<Data> data;
     List<Data> dataTemp;
-    List<CovidData> covidData;
-    private CovidListAdapter adapter;
-    private CovidViewModel mCovidViewModel;
+    private BookmarkListAdapter adapter;
     private FavViewModel mFavViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -59,10 +55,6 @@ public class BookmarkFragment extends Fragment implements CovidListAdapter.OnIte
     @Override
     public void onItemClick(int position, Data data) {
         Log.e("ClickedItem", data.country + data.countryInfoId);
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
-//        ft.addToBackStack("Back");
-//        ft.commit();
     }
 
     @Override
@@ -84,8 +76,7 @@ public class BookmarkFragment extends Fragment implements CovidListAdapter.OnIte
         dataTemp = new ArrayList<>();
         RecyclerView recyclerView = view.findViewById(R.id.rvBookmark);
         mFavViewModel = new ViewModelProvider(this).get(FavViewModel.class);
-
-        adapter = new CovidListAdapter(new CovidListAdapter.DataDiff());
+        adapter = new BookmarkListAdapter(new BookmarkListAdapter.DataDiff());
         mFavViewModel.getAllDatas().observe(getActivity(), datas -> {
             // Update the cached copy of the words in the adapter.
             if(datas.size()>0){
