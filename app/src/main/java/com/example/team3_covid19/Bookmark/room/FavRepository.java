@@ -9,6 +9,7 @@ import com.example.team3_covid19.CovidMenu.room.Data;
 import com.example.team3_covid19.CovidMenu.room.DataDao;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class FavRepository {
 
@@ -16,6 +17,7 @@ public class FavRepository {
     private Data data = new Data();
     private LiveData<List<Data>> allDatas;
     private Boolean flag = false;
+    private Boolean finish = false;
     //private List<Data> allDatas;
 
     public FavRepository(Application application) {
@@ -63,14 +65,18 @@ public class FavRepository {
         FavDatabase.databaseWriteExecutor.execute(() -> {
 
             flag = dataDao.isCountryExist(country);
+            finish = true;
             Log.e("TAG", "exist in favorite");
         });
+        while(finish != true)
+            Log.e("TAG", "waiting");
+        {
 
+        }
         if(flag == true)
             Log.e("TAG2", "exist in favorite");
         else
             Log.e("TAG2", "not exist in favorite");
-
         return flag;
     }
 
