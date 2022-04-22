@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -172,6 +173,12 @@ public class CovidDetailFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.backHome:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, CovidListFragment.newInstance())
+                        .addToBackStack("home")
+                        .commit();
+                return true;
             case R.id.favorites:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, BookmarkFragment.newInstance())

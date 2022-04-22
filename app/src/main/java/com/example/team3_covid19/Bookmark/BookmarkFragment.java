@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.team3_covid19.Bookmark.room.FavViewModel;
+import com.example.team3_covid19.CovidMenu.CovidListFragment;
 import com.example.team3_covid19.Profile.ProfileDataFragment;
 import com.example.team3_covid19.Profile.SessionManagement;
 import com.example.team3_covid19.R;
@@ -111,6 +112,12 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.backHome:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, CovidListFragment.newInstance())
+                        .addToBackStack("home")
+                        .commit();
+                return true;
             case R.id.favorites:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, BookmarkFragment.newInstance())

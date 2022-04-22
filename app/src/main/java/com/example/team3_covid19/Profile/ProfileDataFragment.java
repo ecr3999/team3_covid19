@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.team3_covid19.Bookmark.BookmarkFragment;
+import com.example.team3_covid19.CovidMenu.CovidListFragment;
 import com.example.team3_covid19.R;
 
 /**
@@ -75,6 +76,12 @@ public class ProfileDataFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.backHome:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, CovidListFragment.newInstance())
+                        .addToBackStack("home")
+                        .commit();
+                return true;
             case R.id.favorites:
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, BookmarkFragment.newInstance())
