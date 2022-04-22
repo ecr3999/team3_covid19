@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.team3_covid19.Bookmark.FavRepository;
 import com.example.team3_covid19.Bookmark.FavViewModel;
 import com.example.team3_covid19.TabFragment.InfoFragment;
 import com.example.team3_covid19.TabFragment.StatFragment;
@@ -86,7 +87,6 @@ public class CovidDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //Need to be included if created in fragment
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
-        mFavViewModel = new ViewModelProvider(this).get(FavViewModel.class);
     }
 
     @Override
@@ -141,7 +141,9 @@ public class CovidDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         btnFav = view.findViewById(R.id.btnFav);
-        boolean isExist = mFavViewModel.countryIsExist(data.country);
+        mFavViewModel = new ViewModelProvider(this).get(FavViewModel.class);
+        mFavViewModel.getAllDatas();
+        boolean isExist = mFavViewModel.isCountryExist(data.getCountry());
         if(isExist) {
             btnFav.setImageResource(R.drawable.ic_fav);
             Log.e("EXIST", "ada");
@@ -163,9 +165,7 @@ public class CovidDetailFragment extends Fragment {
                     dataList.add(data);
                     mFavViewModel.insert(dataList);
                 }
-
             }
-
         });
     }
 
@@ -173,10 +173,14 @@ public class CovidDetailFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.favorites:
-                Toast.makeText(getActivity(), "Favorites", Toast.LENGTH_SHORT);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, BookmarkFragment.newInstance())
-                        .addToBackStack(null)
+                        .addToBackStack("favorites")
+                        .commit();
+            case R.id.myprofile:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ProfileDataFragment.newInstance())
+                        .addToBackStack("myprofile")
                         .commit();
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());

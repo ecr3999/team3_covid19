@@ -31,6 +31,9 @@ public interface DataDao {
     @Query("SELECT * FROM data where country = :country")
     Data getData(String country);
 
+    @Query("SELECT EXISTS(SELECT * FROM data WHERE country = :country)")
+    boolean isCountryExist(String country);
+
     @Query("DELETE FROM data where country = :country")
     void delete(String country);
 

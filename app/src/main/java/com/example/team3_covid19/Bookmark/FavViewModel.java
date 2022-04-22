@@ -14,6 +14,7 @@ import java.util.List;
 public class FavViewModel extends AndroidViewModel {
 
     private FavRepository favRepository;
+    private Boolean isExist;
     private final LiveData<List<Data>> allDatas;
 
     public FavViewModel(Application application) {
@@ -26,14 +27,12 @@ public class FavViewModel extends AndroidViewModel {
         return allDatas;
     }
 
-    public boolean countryIsExist(String country){
-        Boolean isExist;
-        isExist = favRepository.countryIsExist(country);
-        if(isExist)
-            Log.e("country", "isexist");
-        else
-            Log.e("country", "not exist");
-        return isExist;
+    public void setFav(Data data){
+        favRepository.setFav(data);
+    }
+
+    public boolean isCountryExist(String country){
+        return favRepository.isCountryExist(country);
     }
 
     public void insert(List<Data> data){

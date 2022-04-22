@@ -125,6 +125,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 adapter.submitList(datas);
                 data = datas;
                 //dataTemp = datas;
+                dataTemp.clear();
                 dataTemp.addAll(datas);
                 Log.e("DATATEMP", dataTemp.size() + "");
             } else {
@@ -139,7 +140,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     @Override
     /*public void onItemClick(int position, Data data) {*/
     public void onItemClick(int position, Data data) {
-        Log.e("TAGFRG", data.country + data.countryInfoId);
+        Log.e("ClickedItem", data.country + data.countryInfoId);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
         ft.addToBackStack("Back");

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ import java.util.List;
  * Use the {@link BookmarkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookmarkFragment extends Fragment {
+public class BookmarkFragment extends Fragment implements CovidListAdapter.OnItemClick{
     List<Data> data;
     List<Data> dataTemp;
     List<CovidData> covidData;
@@ -53,6 +54,15 @@ public class BookmarkFragment extends Fragment {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onItemClick(int position, Data data) {
+        Log.e("ClickedItem", data.country + data.countryInfoId);
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
+//        ft.addToBackStack("Back");
+//        ft.commit();
     }
 
     @Override
@@ -90,7 +100,4 @@ public class BookmarkFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    public void onItemClick(int position, Data data) {
-        Log.e("TAG", data.country);
-    }
 }

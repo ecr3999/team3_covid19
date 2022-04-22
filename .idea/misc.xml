@@ -7,6 +7,7 @@
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_logout.xml" value="0.2765" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_no_fav.xml" value="0.1405" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_not_fav.xml" value="0.1405" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/drawable/ic_profile.xml" value="0.2765" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_login.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/activity_test_db.xml" value="0.18177083333333333" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_bookmark.xml" value="0.2703125" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_covid_detail.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_covid_list.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_info.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_list_country.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_menu.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/bcamaster/AndroidStudioProjects/Team3_Covid19/app/src/main/res/layout/fragment_profile_data.xml" value="0.25" />
