@@ -27,8 +27,6 @@ import com.example.team3_covid19.Profile.LoginActivity;
 import com.example.team3_covid19.Profile.ProfileDataFragment;
 import com.example.team3_covid19.R;
 import com.example.team3_covid19.Profile.SessionManagement;
-import com.example.team3_covid19.TabFragment.InfoFragment;
-import com.example.team3_covid19.TabFragment.StatFragment;
 import com.example.team3_covid19.UserClickableCallback;
 import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
 import com.example.team3_covid19.CovidMenu.room.Data;

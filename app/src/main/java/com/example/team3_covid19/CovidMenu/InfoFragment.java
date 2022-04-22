@@ -1,4 +1,4 @@
-package com.example.team3_covid19.TabFragment;
+package com.example.team3_covid19.CovidMenu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
