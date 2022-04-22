@@ -47,7 +47,7 @@ public class InfoFragment extends Fragment {
         tvIso3.setText(""+data.countryInfoIso3);
         tvLat.setText(""+data.countryInfoLat);
         tvLong.setText(""+data.countryInfoLong);
-        tvLong.setText(""+data.population);
+        tvPopulation.setText(""+data.population);
         Glide.with(view)
                 .load(data.countryInfoFlag)
                 .apply(new RequestOptions().override(400,160))

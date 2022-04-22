@@ -107,10 +107,10 @@ public class CovidDetailFragment extends Fragment {
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = InfoFragment.newInstance(data);
+                        fragment = StatFragment.newInstance(data);
                         break;
                     case 1:
-                        fragment = StatFragment.newInstance(data);
+                        fragment = InfoFragment.newInstance(data);
                         break;
                 }
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -199,7 +199,7 @@ public class CovidDetailFragment extends Fragment {
 
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_app, menu);
+        inflater.inflate(R.menu.menu_app_without_search, menu);
     }
 
 }

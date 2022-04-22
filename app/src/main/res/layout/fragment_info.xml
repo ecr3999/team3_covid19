@@ -108,8 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Population : "
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:layout_editor_absoluteX="44dp" />
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"

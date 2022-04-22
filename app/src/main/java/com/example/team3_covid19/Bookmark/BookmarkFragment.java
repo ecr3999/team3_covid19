@@ -11,10 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.team3_covid19.Bookmark.room.FavViewModel;
+import com.example.team3_covid19.Profile.ProfileDataFragment;
+import com.example.team3_covid19.Profile.SessionManagement;
 import com.example.team3_covid19.R;
 import com.example.team3_covid19.CovidMenu.room.Data;
 
@@ -91,6 +96,39 @@ public class BookmarkFragment extends Fragment implements BookmarkListAdapter.On
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_app_without_search, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.favorites:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, BookmarkFragment.newInstance())
+                        .addToBackStack("favorites")
+                        .commit();
+                return true;
+            case R.id.profile:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ProfileDataFragment.newInstance())
+                        .addToBackStack("profile")
+                        .commit();
+                return true;
+            case R.id.logout:
+                SessionManagement.getInstance().endUserSession(getActivity());
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

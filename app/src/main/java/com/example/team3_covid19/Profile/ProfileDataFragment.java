@@ -4,13 +4,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.team3_covid19.Bookmark.BookmarkFragment;
 import com.example.team3_covid19.R;
 
 /**
@@ -35,6 +40,7 @@ public class ProfileDataFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -54,5 +60,38 @@ public class ProfileDataFragment extends Fragment {
         tvFullname.setText(fullname);
         tvEmail.setText(email);
         return view;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_app_without_search, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.favorites:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, BookmarkFragment.newInstance())
+                        .addToBackStack("favorites")
+                        .commit();
+                return true;
+            case R.id.profile:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ProfileDataFragment.newInstance())
+                        .addToBackStack("profile")
+                        .commit();
+                return true;
+            case R.id.logout:
+                SessionManagement.getInstance().endUserSession(getActivity());
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

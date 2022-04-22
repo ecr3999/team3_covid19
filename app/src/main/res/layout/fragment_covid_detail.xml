@@ -60,12 +60,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Info" />
+            android:text="Statistic" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Statistic" />
+            android:text="Info" />
 
 
     </com.google.android.material.tabs.TabLayout>
@@ -95,14 +95,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_not_fav" />
-    <!--<androidx.fragment.app.FragmentContainerView
-        android:id="@+id/container_fragment_covid_detail"
-        android:name="com.example.team3_covid19.CovidMenu.CovidDetailFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
