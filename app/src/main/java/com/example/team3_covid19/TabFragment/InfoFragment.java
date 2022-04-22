@@ -27,7 +27,6 @@ public class InfoFragment extends Fragment {
     public static InfoFragment newInstance(Data dataCovid) {
         InfoFragment fragment = new InfoFragment();
         data = dataCovid;
-        Log.e("DATAINSTANCE",data.countryInfoIso2+"");
         return fragment;
     }
 

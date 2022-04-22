@@ -54,12 +54,16 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class CovidListFragment extends Fragment implements CovidListAdapter.OnItemClick {
+    private RecyclerView recyclerView;
     List<Data> data;
     List<Data> dataTemp;
+    List<CovidData> covidData;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
     private static final String TAG_ID = "TAG_ID";
     private int id = -1;
+    //LiveData<List<Data>> covidData;
+    //private CovidViewModel covidViewModel;
     private static final int NUMBER_OF_THREADS = 1;
     private Executor poolWorker = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private Executor mainThread = new Executor() {
@@ -142,6 +146,9 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         ft.replace(R.id.container, CovidDetailFragment.newInstance(data));
         ft.addToBackStack("Back");
         ft.commit();
+        /*getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, CovidDetailFragment.newInstance(data.countryInfoId))
+                .commitNow();*/
 
     }
 
@@ -203,9 +210,12 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                         .replace(R.id.container, ProfileDataFragment.newInstance())
                         .addToBackStack("myprofile")
                         .commit();
-                getActivity().invalidateOptionsMenu();
+            case R.id.profile:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ProfileDataFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit();
                 return true;
-
             case R.id.logout:
                 SessionManagement.getInstance().endUserSession(getActivity());
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -218,8 +228,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
