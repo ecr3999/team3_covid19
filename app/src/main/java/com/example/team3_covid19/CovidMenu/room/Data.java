@@ -65,7 +65,7 @@ public class Data {
     public String testsPerOneMillion;
 
     @ColumnInfo(name = "population")
-    public String population;
+    public int population;
 
     @ColumnInfo(name = "continent")
     public String continent;
@@ -172,7 +172,7 @@ public class Data {
         return testsPerOneMillion;
     }
 
-    public String getPopulation() {
+    public int getPopulation() {
         return population;
     }
 
@@ -288,7 +288,7 @@ public class Data {
         this.testsPerOneMillion = testsPerOneMillion;
     }
 
-    public void setPopulation(String population) {
+    public void setPopulation(int population) {
         this.population = population;
     }
 
@@ -331,31 +331,6 @@ public class Data {
 
     public Data(String stringExtra) {
     }
-/*public Data(int id, String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String critical, String casesPerOneMillion, String deathsPerOneMillion, String tests, String testsPerOneMillion, String population, String continent, String oneCasePerPeople, String oneDeathPerPeople, String oneTestPerPeople, String activePerOneMillion, String recoveredPerOneMillion, String criticalPerOneMillion) {
-        this.id = id;
-        this.updated = updated;
-        this.country = country;
-        this.cases = cases;
-        this.todayCases = todayCases;
-        this.deaths = deaths;
-        this.todayDeaths = todayDeaths;
-        this.recovered = recovered;
-        this.todayRecovered = todayRecovered;
-        this.active = active;
-        this.critical = critical;
-        this.casesPerOneMillion = casesPerOneMillion;
-        this.deathsPerOneMillion = deathsPerOneMillion;
-        this.tests = tests;
-        this.testsPerOneMillion = testsPerOneMillion;
-        this.population = population;
-        this.continent = continent;
-        this.oneCasePerPeople = oneCasePerPeople;
-        this.oneDeathPerPeople = oneDeathPerPeople;
-        this.oneTestPerPeople = oneTestPerPeople;
-        this.activePerOneMillion = activePerOneMillion;
-        this.recoveredPerOneMillion = recoveredPerOneMillion;
-        this.criticalPerOneMillion = criticalPerOneMillion;
-    }*/
 
     @Override
     public String toString() {

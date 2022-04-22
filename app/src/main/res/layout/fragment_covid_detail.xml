@@ -97,7 +97,7 @@
         app:srcCompat="@drawable/ic_not_fav" />
     <!--<androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_fragment_covid_detail"
-        android:name="com.example.team3_covid19.CovidDetailFragment"
+        android:name="com.example.team3_covid19.CovidMenu.CovidDetailFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"

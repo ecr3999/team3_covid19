@@ -1,40 +1,22 @@
 package com.example.team3_covid19;
 
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
-import com.example.team3_covid19.room.CovidDatabase;
-//import com.example.team3_covid19.room.CovidViewModel;
-import com.example.team3_covid19.room.CovidViewModel;
-import com.example.team3_covid19.room.Data;
-import com.example.team3_covid19.room.DataDao;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.team3_covid19.CovidMenu.CovidListAdapter;
+import com.example.team3_covid19.CovidMenu.CovidListFragment;
+import com.example.team3_covid19.Profile.LoginActivity;
+import com.example.team3_covid19.Profile.SessionManagement;
+//import com.example.team3_covid19.CovidMenu.room.CovidViewModel;
+import com.example.team3_covid19.CovidMenu.room.Data;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements CovidListAdapter.OnItemClick{
     private static final int NUMBER_OF_THREADS = 1;

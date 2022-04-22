@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.team3_covid19.R;
-import com.example.team3_covid19.room.Data;
+import com.example.team3_covid19.CovidMenu.room.Data;
 
 public class StatFragment extends Fragment {
     private static Data data;

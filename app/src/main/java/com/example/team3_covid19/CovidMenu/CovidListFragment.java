@@ -171,7 +171,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                     data.todayDeaths = response.body().get(i).getTodayDeaths();
                     data.recovered = response.body().get(i).getRecovered();
                     data.todayRecovered = response.body().get(i).getTodayRecovered();
-
+                    data.population = response.body().get(i).getPopulation();
                     listData.add(data);
                     Log.d("DataInserted1", data.country);
                 }
