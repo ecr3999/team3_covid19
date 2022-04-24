@@ -51,7 +51,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     private RecyclerView recyclerView;
     List<Data> data;
     List<Data> dataTemp;
-    List<CovidData> covidDataAPI;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
     boolean flagService;
@@ -110,6 +109,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 data = datas;
                 dataTemp.clear();
                 dataTemp.addAll(datas);
+                List<Data> data;
             }
         });
         adapter.setOnClickListener(CovidListFragment.this);
@@ -232,7 +232,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 ArrayList<Data> alFoundData = null;
                 alFoundData = searchUser(query);
                 if (alFoundData.size() != 0) {
-                    dataTemp = data;
                     data.clear();
                     data.addAll(alFoundData);
                     adapter.notifyDataSetChanged();
