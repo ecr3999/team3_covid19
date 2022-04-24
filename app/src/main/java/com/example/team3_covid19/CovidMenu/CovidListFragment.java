@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -131,6 +132,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     }
 
     public void getDataFromServer() {
+        flagService = true;
         RetrofitCovidData retrofitCovidData = new RetrofitCovidData();
         retrofitCovidData.getAPI().getCovidData().enqueue(new Callback<List<CovidData>>() {
             @Override
