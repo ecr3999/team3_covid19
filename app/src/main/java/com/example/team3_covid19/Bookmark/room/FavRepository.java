@@ -21,6 +21,7 @@ public class FavRepository {
     private Boolean flag = false;
     private Boolean finish = false;
 
+
     public FavRepository(Application application) {
         FavDatabase database = FavDatabase.getDatabase(application);
         dataDao = database.dataDao();
@@ -47,22 +48,25 @@ public class FavRepository {
         });
     }
 
-    Boolean isCountryExist(int id) {
+    Boolean isCountryExist(String country) {
+
         Future future = FavDatabase.databaseWriteExecutor.submit(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return dataDao.isCountryExist(id);
+                return dataDao.isCountryExist(country);
             }
         });
         try {
+            Log.e("TAG", future.get().toString());
             return (Boolean) future.get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    return false;
+        return false;
     }
+
 //            @Override
 //            public Boolean call() throws Exception {
 //                        Boolean flag = dataDao.isCountryExist(id);

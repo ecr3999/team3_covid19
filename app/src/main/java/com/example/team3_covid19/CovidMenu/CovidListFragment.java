@@ -80,6 +80,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //Need to be included if created in fragment
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
+        getDataFromServer();
     }
 
 
@@ -99,7 +100,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
 
         adapter = new CovidListAdapter(new CovidListAdapter.DataDiff());
-        getDataFromServer();
         mCovidViewModel.getAllDatas().observe(getActivity(), datas -> {
             // Update the cached copy of the words in the adapter.
             if (datas.size() < 1 && flagService==false) {
