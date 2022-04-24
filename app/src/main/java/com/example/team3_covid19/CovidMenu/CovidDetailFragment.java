@@ -117,7 +117,7 @@ public class CovidDetailFragment extends Fragment {
         btnFav = view.findViewById(R.id.btnFav);
         mFavViewModel = new ViewModelProvider(this).get(FavViewModel.class);
         mFavViewModel.getAllDatas();
-        boolean isExist = mFavViewModel.isCountryExist(data.getCountry());
+        boolean isExist = mFavViewModel.isCountryExist(data.getId());
         if(isExist) {
             btnFav.setImageResource(R.drawable.ic_fav);
         }

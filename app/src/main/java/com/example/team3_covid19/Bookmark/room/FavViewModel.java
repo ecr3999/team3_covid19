@@ -25,8 +25,8 @@ public class FavViewModel extends AndroidViewModel {
     public void setFav(Data data){
         favRepository.setFav(data);
     }
-    public boolean isCountryExist(String country){
-        return favRepository.isCountryExist(country);
+    public boolean isCountryExist(int id){
+        return favRepository.isCountryExist(id);
     }
     public void insert(List<Data> data){
         favRepository.insert(data);

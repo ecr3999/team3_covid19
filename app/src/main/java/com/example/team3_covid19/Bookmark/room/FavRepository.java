@@ -9,6 +9,9 @@ import com.example.team3_covid19.CovidMenu.room.Data;
 import com.example.team3_covid19.CovidMenu.room.DataDao;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class FavRepository {
@@ -44,23 +47,46 @@ public class FavRepository {
         });
     }
 
-    boolean isCountryExist(String country) {
-        FavDatabase.databaseWriteExecutor.execute(() -> {
-            flag = dataDao.isCountryExist(country);
-            finish = true;
+    Boolean isCountryExist(int id) {
+        Future future = FavDatabase.databaseWriteExecutor.submit(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return dataDao.isCountryExist(id);
+            }
         });
-        while(finish != true)
-        {
-
+        try {
+            return (Boolean) future.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        if(flag == true){
-
-        }
-        else{
-
-        }
-        return flag;
+    return false;
     }
+//            @Override
+//            public Boolean call() throws Exception {
+//                        Boolean flag = dataDao.isCountryExist(id);
+//                if (flag)
+//                    Log.e("TAG","true");
+//                else
+//                    Log.e("TAG","false");
+//
+//                return dataDao.isCountryExist(id);
+//            }
+//        });
+//        if (future.get();)
+//            Log.e("TAG2","true");
+//        else
+//            Log.e("TAG2","false");
+//        return future.isDone();
+
+//        FavDatabase.databaseWriteExecutor.execute(new Callable<Boolean flag>());
+//        FavDatabase.databaseWriteExecutor.execute(() -> {
+//
+//            flag = dataDao.isCountryExist(country);
+//        });
+//        return flag;
+
 
     void insert(List<Data> data) {
         FavDatabase.databaseWriteExecutor.execute(() -> {

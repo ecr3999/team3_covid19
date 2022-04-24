@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginData = response.body();
                 if(loginData == null)
                 {
-                    Toast.makeText(LoginActivity.this,"Logon Server is down",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Username atau Password salah!!",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
