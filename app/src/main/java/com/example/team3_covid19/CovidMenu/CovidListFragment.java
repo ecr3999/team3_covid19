@@ -50,9 +50,10 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
     private RecyclerView recyclerView;
     List<Data> data;
     List<Data> dataTemp;
-    List<CovidData> covidData;
+    List<CovidData> covidDataAPI;
     private CovidListAdapter adapter;
     private CovidViewModel mCovidViewModel;
+    boolean flagService;
 
     private static final int NUMBER_OF_THREADS = 1;
     private Executor poolWorker = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -98,15 +99,16 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         mCovidViewModel = new ViewModelProvider(this).get(CovidViewModel.class);
 
         adapter = new CovidListAdapter(new CovidListAdapter.DataDiff());
+        getDataFromServer();
         mCovidViewModel.getAllDatas().observe(getActivity(), datas -> {
             // Update the cached copy of the words in the adapter.
-            if (datas.size() > 0) {
+            if (datas.size() < 1 && flagService==false) {
+                Toast.makeText(getActivity(), "Server bermasalah, coba beberapa saat lagi..", Toast.LENGTH_SHORT).show();
+            }else{
                 adapter.submitList(datas);
                 data = datas;
                 dataTemp.clear();
                 dataTemp.addAll(datas);
-            } else {
-                getDataFromServer();
             }
         });
         adapter.setOnClickListener(CovidListFragment.this);
@@ -133,6 +135,8 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
         retrofitCovidData.getAPI().getCovidData().enqueue(new Callback<List<CovidData>>() {
             @Override
             public void onResponse(Call<List<CovidData>> call, Response<List<CovidData>> response) {
+                //hapus dulu data di db
+                mCovidViewModel.deleteAll();
                 List<Data> listData = new ArrayList<>();
                 for (int i = 0; i < response.body().size(); i++) {
                     Data data = new Data();
@@ -162,6 +166,7 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
             @Override
             public void onFailure(Call<List<CovidData>> call, Throwable t) {
                Log.e("Failure:", t.getMessage());
+                flagService = false;
             }
         });
     }
@@ -223,9 +228,9 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
 
             private boolean quesrySearch(String query) {
                 ArrayList<Data> alFoundData = null;
-                Log.e("DataSearch", data.size() + "");
                 alFoundData = searchUser(query);
                 if (alFoundData.size() != 0) {
+                    dataTemp = data;
                     data.clear();
                     data.addAll(alFoundData);
                     adapter.notifyDataSetChanged();
@@ -238,7 +243,6 @@ public class CovidListFragment extends Fragment implements CovidListAdapter.OnIt
                 ArrayList<Data> alFoundData = new ArrayList<Data>();
                 for (Data i : data) {
                     if (i.country != null) {
-                        Log.e("DATA", i.country);
                         if (i.country.toLowerCase().contains(query.toLowerCase())) {
                             alFoundData.add(i);
                         }

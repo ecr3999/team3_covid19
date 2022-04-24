@@ -20,4 +20,8 @@ public class CovidViewModel extends AndroidViewModel {
     public void insert(List<Data> data){
         covidRepository.insert(data);
     }
+
+    public void deleteAll(){
+        covidRepository.delete();
+    }
 }
